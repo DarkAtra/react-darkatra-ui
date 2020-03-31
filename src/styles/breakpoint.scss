@@ -1,0 +1,29 @@
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+@function breakpoint-infix($name) {
+  @return "-#{$name}"
+}
+
+@mixin breakpoint-up($name) {
+  $min-width: map-get($breakpoints, $name);
+  @if $min-width != 0 {
+    @media (min-width: $min-width) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin breakpoint-aware-css-variable($name, $default-value) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint);
+    --#{$name}#{$infix}: $default-value;
+  }
+}

@@ -1,0 +1,94 @@
+@import "src/styles/breakpoint";
+
+// fallback for older browsers
+.grid {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  // direct children are always grid items as specified by the specs
+  > .grid-item {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@supports (grid-template-columns: 1fr) {
+  .grid {
+    display: grid;
+    align-items: stretch;
+
+    // direct children are always grid items as specified by the specs
+    > .grid-item {
+      width: auto;
+      margin-bottom: 0 !important;
+
+      // grid-row, grid-column with css variables for each breakpoint
+      @each $prop, $abbrev in (grid-row: grid-row, grid-column: grid-column) {
+        @include breakpoint-aware-css-variable($abbrev, 1);
+        @each $breakpoint in map-keys($breakpoints) {
+          $infix: breakpoint-infix($breakpoint);
+          @include breakpoint-up($breakpoint) {
+            &.#{$abbrev} {
+              #{$prop}: span var(--#{$abbrev}#{$infix}) !important;
+            }
+          }
+        }
+      }
+    }
+
+    // grid-inline with css variables for each breakpoint
+    @each $prop, $abbrev in (display: grid-inline) {
+      @include breakpoint-aware-css-variable($abbrev, grid);
+      @each $breakpoint in map-keys($breakpoints) {
+        $infix: breakpoint-infix($breakpoint);
+        @include breakpoint-up($breakpoint) {
+          &.#{$abbrev} {
+            #{$prop}: var(--#{$abbrev}#{$infix}) !important;
+          }
+        }
+      }
+    }
+
+    // grid-dense with css variables for each breakpoint
+    @each $prop, $abbrev in (grid-auto-flow: grid-dense) {
+      @include breakpoint-aware-css-variable($abbrev, row);
+      @each $breakpoint in map-keys($breakpoints) {
+        $infix: breakpoint-infix($breakpoint);
+        @include breakpoint-up($breakpoint) {
+          &.#{$abbrev} {
+            #{$prop}: var(--#{$abbrev}#{$infix}) !important;
+          }
+        }
+      }
+    }
+
+    // grid-gap with css variables for each breakpoint
+    @each $prop, $abbrev in (grid-gap: grid-gap) {
+      @include breakpoint-aware-css-variable($abbrev, 0);
+      @each $breakpoint in map-keys($breakpoints) {
+        $infix: breakpoint-infix($breakpoint);
+        @include breakpoint-up($breakpoint) {
+          &.#{$abbrev} {
+            #{$prop}: var(--#{$abbrev}#{$infix}) !important;
+          }
+        }
+      }
+    }
+
+    // grid-template-column with css variables for each breakpoint
+    @each $prop, $abbrev in (grid-template-columns: grid-template-columns) {
+      @include breakpoint-aware-css-variable($abbrev, 1);
+      @each $breakpoint in map-keys($breakpoints) {
+        $infix: breakpoint-infix($breakpoint);
+        @include breakpoint-up($breakpoint) {
+          &.#{$abbrev} {
+            #{$prop}: var(--#{$abbrev}#{$infix}) !important;
+          }
+        }
+      }
+    }
+  }
+}
