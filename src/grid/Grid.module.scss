@@ -23,7 +23,7 @@
     // direct children are always grid items as specified by the specs
     > .grid-item {
       width: auto;
-      margin-bottom: 0 !important;
+      margin-bottom: 0;
 
       // grid-row, grid-column with css variables for each breakpoint
       @each $prop, $abbrev in (grid-row: grid-row, grid-column: grid-column) {
@@ -32,7 +32,7 @@
           $infix: breakpoint-infix($breakpoint);
           @include breakpoint-up($breakpoint) {
             &.#{$abbrev} {
-              #{$prop}: span var(--#{$abbrev}#{$infix}) !important;
+              #{$prop}: span var(--#{$abbrev}#{$infix});
             }
           }
         }
@@ -46,7 +46,7 @@
         $infix: breakpoint-infix($breakpoint);
         @include breakpoint-up($breakpoint) {
           &.#{$abbrev} {
-            #{$prop}: var(--#{$abbrev}#{$infix}) !important;
+            #{$prop}: var(--#{$abbrev}#{$infix});
           }
         }
       }
@@ -59,7 +59,7 @@
         $infix: breakpoint-infix($breakpoint);
         @include breakpoint-up($breakpoint) {
           &.#{$abbrev} {
-            #{$prop}: var(--#{$abbrev}#{$infix}) !important;
+            #{$prop}: var(--#{$abbrev}#{$infix});
           }
         }
       }
@@ -72,7 +72,7 @@
         $infix: breakpoint-infix($breakpoint);
         @include breakpoint-up($breakpoint) {
           &.#{$abbrev} {
-            #{$prop}: var(--#{$abbrev}#{$infix}) !important;
+            #{$prop}: var(--#{$abbrev}#{$infix});
           }
         }
       }
@@ -85,7 +85,7 @@
         $infix: breakpoint-infix($breakpoint);
         @include breakpoint-up($breakpoint) {
           &.#{$abbrev} {
-            #{$prop}: var(--#{$abbrev}#{$infix}) !important;
+            #{$prop}: var(--#{$abbrev}#{$infix});
           }
         }
       }

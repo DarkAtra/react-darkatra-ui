@@ -30,7 +30,7 @@ const getValueOrDefault = <T>(_value: T | null, _fallback: T) => {
 export const getBreakpointAwareValue = <T>(breakpoint: Breakpoint, value: BreakpointAwareValue<T> | null) => {
     if (value === null) {
         return null;
-    } else if ((Object.keys(value) as Breakpoint[]).length === 0) {
+    } else if (!(value instanceof Object)) {
         return breakpoint === 'xs' ? value as T : null;
     } else {
         return getValueOrDefault((value as { [key in Breakpoint]?: T })[breakpoint] as T, null);
