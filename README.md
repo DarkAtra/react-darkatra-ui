@@ -9,4 +9,4 @@ This library utilizes the power of [CSS Grid Layouts](https://developer.mozilla.
 
 ![Screenshot of /example](example/example.png)
 
-Live demo: https://darkatra.github.io/react-darkatra-ui/
+Live demo: https://darkatra.github.io/react-darkatra-ui/index.html
