@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-darkatra-ui/precache-manifest.f61363f4162f2759f0d7ce6a5c388d45.js"
+  "/react-darkatra-ui/precache-manifest.658ea2535c4082cc741131faa703b330.js"
 );
 
 self.addEventListener('message', (event) => {
