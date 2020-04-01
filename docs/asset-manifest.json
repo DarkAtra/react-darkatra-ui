@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/react-darkatra-ui/static/js/main.345e38ac.chunk.js",
+    "main.js.map": "/react-darkatra-ui/static/js/main.345e38ac.chunk.js.map",
+    "runtime-main.js": "/react-darkatra-ui/static/js/runtime-main.5aba99f9.js",
+    "runtime-main.js.map": "/react-darkatra-ui/static/js/runtime-main.5aba99f9.js.map",
+    "static/js/2.b3dccddb.chunk.js": "/react-darkatra-ui/static/js/2.b3dccddb.chunk.js",
+    "static/js/2.b3dccddb.chunk.js.map": "/react-darkatra-ui/static/js/2.b3dccddb.chunk.js.map",
+    "index.html": "/react-darkatra-ui/index.html",
+    "precache-manifest.f61363f4162f2759f0d7ce6a5c388d45.js": "/react-darkatra-ui/precache-manifest.f61363f4162f2759f0d7ce6a5c388d45.js",
+    "service-worker.js": "/react-darkatra-ui/service-worker.js",
+    "static/js/2.b3dccddb.chunk.js.LICENSE.txt": "/react-darkatra-ui/static/js/2.b3dccddb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5aba99f9.js",
+    "static/js/2.b3dccddb.chunk.js",
+    "static/js/main.345e38ac.chunk.js"
+  ]
+}
