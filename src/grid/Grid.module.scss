@@ -22,6 +22,8 @@
 
     // direct children are always grid items as specified by the specs
     > .grid-item {
+      display: flex;
+      flex-direction: column;
       width: auto;
       margin-bottom: 0;
 
