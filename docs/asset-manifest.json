@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.js": "/react-darkatra-ui/static/js/main.345e38ac.chunk.js",
-    "main.js.map": "/react-darkatra-ui/static/js/main.345e38ac.chunk.js.map",
+    "main.css": "/react-darkatra-ui/static/css/main.967efa8f.chunk.css",
+    "main.js": "/react-darkatra-ui/static/js/main.ff827442.chunk.js",
+    "main.js.map": "/react-darkatra-ui/static/js/main.ff827442.chunk.js.map",
     "runtime-main.js": "/react-darkatra-ui/static/js/runtime-main.5aba99f9.js",
     "runtime-main.js.map": "/react-darkatra-ui/static/js/runtime-main.5aba99f9.js.map",
-    "static/js/2.f9aee5d3.chunk.js": "/react-darkatra-ui/static/js/2.f9aee5d3.chunk.js",
-    "static/js/2.f9aee5d3.chunk.js.map": "/react-darkatra-ui/static/js/2.f9aee5d3.chunk.js.map",
+    "static/js/2.4f789a94.chunk.js": "/react-darkatra-ui/static/js/2.4f789a94.chunk.js",
+    "static/js/2.4f789a94.chunk.js.map": "/react-darkatra-ui/static/js/2.4f789a94.chunk.js.map",
     "index.html": "/react-darkatra-ui/index.html",
-    "precache-manifest.658ea2535c4082cc741131faa703b330.js": "/react-darkatra-ui/precache-manifest.658ea2535c4082cc741131faa703b330.js",
+    "precache-manifest.e6181b02e19b23952737477464ebe0c6.js": "/react-darkatra-ui/precache-manifest.e6181b02e19b23952737477464ebe0c6.js",
     "service-worker.js": "/react-darkatra-ui/service-worker.js",
-    "static/js/2.f9aee5d3.chunk.js.LICENSE.txt": "/react-darkatra-ui/static/js/2.f9aee5d3.chunk.js.LICENSE.txt"
+    "static/css/main.967efa8f.chunk.css.map": "/react-darkatra-ui/static/css/main.967efa8f.chunk.css.map",
+    "static/js/2.4f789a94.chunk.js.LICENSE.txt": "/react-darkatra-ui/static/js/2.4f789a94.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5aba99f9.js",
-    "static/js/2.f9aee5d3.chunk.js",
-    "static/js/main.345e38ac.chunk.js"
+    "static/js/2.4f789a94.chunk.js",
+    "static/css/main.967efa8f.chunk.css",
+    "static/js/main.ff827442.chunk.js"
   ]
 }

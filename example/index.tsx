@@ -2,6 +2,7 @@ import * as React from 'react';
 import 'react-app-polyfill/ie11';
 import * as ReactDOM from 'react-dom';
 import {Grid, GridItem} from '../.';
+import './index.css';
 
 const App = () => {
 
@@ -67,6 +68,55 @@ const App = () => {
                     </GridItem>
                     <GridItem style={gridItemStyles}>
                         Item 3
+                    </GridItem>
+                </Grid>
+            </GridItem>
+            <GridItem>
+                <h4>
+                    First column shrinks to fit it's content, second column takes the remaining space.
+                    Also adds a gap of <code>1px</code> between grid items to make it easier to see the size of each item.
+                </h4>
+                <Grid columns={'auto minmax(0, 1fr)'} gap={'1px'} style={gridStyles}>
+                    <GridItem style={gridItemStyles}>
+                        First name:
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        <input type="text" placeholder="Enter your first name."/>
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        Last name:
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        <input type="text" placeholder="Enter your last name."/>
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        Age:
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        <input type="number" placeholder="Enter your age."/>
+                    </GridItem>
+                </Grid>
+                <h4>
+                    Same as the above but with only one column for everything below <code>md</code>.
+                </h4>
+                <Grid columns={{xs: 1, md: 'auto minmax(0, 1fr)'}} gap={'1px'} style={gridStyles}>
+                    <GridItem style={gridItemStyles}>
+                        First name:
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        <input type="text" placeholder="Enter your first name."/>
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        Last name:
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        <input type="text" placeholder="Enter your last name."/>
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        Age:
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        <input type="number" placeholder="Enter your age."/>
                     </GridItem>
                 </Grid>
             </GridItem>
