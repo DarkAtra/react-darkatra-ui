@@ -7,7 +7,7 @@ import './index.css';
 const App = () => {
 
     const pageStyles = {
-        width: '600px',
+        width: '800px',
         margin: '40px auto'
     };
     const gridStyles = {
@@ -16,6 +16,10 @@ const App = () => {
     };
     const gridItemStyles = {
         backgroundColor: '#e1ccec',
+        padding: '10px'
+    };
+    const gridItemContentStyles = {
+        backgroundColor: '#be9fe1',
         padding: '10px'
     };
 
@@ -27,7 +31,6 @@ const App = () => {
                     <GridItem style={gridItemStyles}>
                         1/6
                     </GridItem>
-                    {/* other GritItem's here */}
                 </Grid>
             </GridItem>
             <GridItem>
@@ -38,6 +41,27 @@ const App = () => {
                     </GridItem>
                     <GridItem style={gridItemStyles}>
                         Item 2
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        Item 3
+                    </GridItem>
+                </Grid>
+                <h4>
+                    Same as the above but the grid has a min height of <code>200px</code> and the content of the grid items is centered vertically and/or
+                    horizontally.
+                </h4>
+                <Grid columns={{sm: 2}} gap={'1px'} style={{...gridStyles, minHeight: '200px'}}>
+                    <GridItem style={gridItemStyles}>
+                        <div style={gridItemContentStyles}>Normal alignment</div>
+                    </GridItem>
+                    <GridItem hAlignContent={'center'} style={gridItemStyles}>
+                        <div style={gridItemContentStyles}>Centered horizontally</div>
+                    </GridItem>
+                    <GridItem vAlignContent={'center'} style={gridItemStyles}>
+                        <div style={gridItemContentStyles}>Centered vertically</div>
+                    </GridItem>
+                    <GridItem hAlignContent={'center'} vAlignContent={'center'} style={gridItemStyles}>
+                        <div style={gridItemContentStyles}>Centered both</div>
                     </GridItem>
                 </Grid>
             </GridItem>

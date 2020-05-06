@@ -37,8 +37,10 @@ const Grid = (props: GridProps) => {
         ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(columns, 1), v => isFixed(v) ? `repeat(${v}, minmax(0, 1fr))` : v),
             key => withBreakpointSuffix('--grid-template-columns', key)),
         ...mapKeys(getValuePerBreakpointAndFillGaps(gap, '0'), key => withBreakpointSuffix('--grid-gap', key)),
-        ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(dense, false), v => v ? 'dense' : 'row'), key => withBreakpointSuffix('--grid-dense', key)),
-        ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(inline, false), v => v ? 'inline-grid' : 'grid'), key => withBreakpointSuffix('--grid-inline', key))
+        ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(dense, false), v => v ? 'dense' : 'row'),
+            key => withBreakpointSuffix('--grid-dense', key)),
+        ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(inline, false), v => v ? 'inline-grid' : 'grid'),
+            key => withBreakpointSuffix('--grid-inline', key))
     } as CSSProperties;
 
     return (

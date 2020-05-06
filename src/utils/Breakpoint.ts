@@ -68,7 +68,7 @@ export const getValuePerBreakpointAndFillGaps = <T>(value: BreakpointAwareValue<
         md: prevValue = getValueOrDefault(getBreakpointAwareValue('md', _valueByBreakpoint), prevValue),
         lg: prevValue = getValueOrDefault(getBreakpointAwareValue('lg', _valueByBreakpoint), prevValue),
         xl: getValueOrDefault(getBreakpointAwareValue('xl', _valueByBreakpoint), prevValue)
-    } as { [key in Breakpoint]: T | null };
+    } as { [key in Breakpoint]: T };
 };
 
 /**
