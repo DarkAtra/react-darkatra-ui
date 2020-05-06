@@ -42,6 +42,17 @@ const App = () => {
                 </Grid>
             </GridItem>
             <GridItem>
+                <h4>One column on <code>xs</code>, two equally sized columns with changed order from <code>sm</code> up</h4>
+                <Grid columns={{sm: 2}} gap={'1px'} style={gridStyles}>
+                    <GridItem order={{sm: 1}} style={gridItemStyles}>
+                        Item 1
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        Item 2
+                    </GridItem>
+                </Grid>
+            </GridItem>
+            <GridItem>
                 <h4>
                     One column on <code>xs</code>, two columns on <code>sm</code>, three columns on <code>md</code> and one column on <code>lg</code> and up.
                     Also adds a gap of <code>.5rem</code> between grid items.
