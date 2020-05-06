@@ -25,7 +25,7 @@ const GridItem = (props: GridProps) => {
 		styles.gridItem,
 		styles.gridRow,
 		styles.gridColumn,
-		styles.order,
+		styles.gridOrder,
 		className
 	);
 
@@ -33,7 +33,7 @@ const GridItem = (props: GridProps) => {
 		...style,
 		...mapKeys(getValuePerBreakpointAndFillGaps(spanColumns, 1), (key: Breakpoint) => withBreakpointSuffix('--grid-column', key)),
 		...mapKeys(getValuePerBreakpointAndFillGaps(spanRows, 1), (key: Breakpoint) => withBreakpointSuffix('--grid-row', key)),
-        ...mapKeys(getValuePerBreakpointAndFillGaps(order, 0), (key: Breakpoint) => withBreakpointSuffix('--order', key))
+        ...mapKeys(getValuePerBreakpointAndFillGaps(order, 0), (key: Breakpoint) => withBreakpointSuffix('--grid-order', key))
 	} as CSSProperties;
 
 	return (

@@ -40,8 +40,8 @@
         }
       }
 
-      // order with css variables for each breakpoint
-      @each $prop, $abbrev in (order: order) {
+      // grid-order with css variables for each breakpoint
+      @each $prop, $abbrev in (order: grid-order) {
         @include breakpoint-aware-css-variable($abbrev, 0);
         @each $breakpoint in map-keys($breakpoints) {
           $infix: breakpoint-infix($breakpoint);
