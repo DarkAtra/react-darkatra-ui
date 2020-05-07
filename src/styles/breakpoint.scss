@@ -24,6 +24,6 @@ $breakpoints: (
 @mixin breakpoint-aware-css-variable($name, $default-value) {
   @each $breakpoint in map-keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint);
-    --#{$name}#{$infix}: $default-value;
+    --#{$name}#{$infix}: #{$default-value};
   }
 }
