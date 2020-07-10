@@ -105,6 +105,18 @@ const App = () => {
                         Item 3
                     </GridItem>
                 </Grid>
+                <h4>Same as the above without a horizontal gap.</h4>
+                <Grid columns={{sm: 2, md: 3, lg: 1}} dense={true} gap={'.5rem 0'} style={gridStyles}>
+                    <GridItem style={gridItemStyles}>
+                        Item 1
+                    </GridItem>
+                    <GridItem spanColumns={{sm: 2, lg: 1}} style={gridItemStyles}>
+                        Item 2
+                    </GridItem>
+                    <GridItem style={gridItemStyles}>
+                        Item 3
+                    </GridItem>
+                </Grid>
             </GridItem>
             <GridItem>
                 <h4>

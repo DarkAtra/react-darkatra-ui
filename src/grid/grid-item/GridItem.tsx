@@ -54,8 +54,6 @@ const GridItem = (props: GridProps) => {
         className
     );
 
-    getValuePerBreakpointAndFillGaps<VerticalAlignContentValue>(vAlignContent, 'normal');
-
     const _style = {
         ...style,
         ...mapKeys(getValuePerBreakpointAndFillGaps(spanColumns, 1), key => withBreakpointSuffix('--grid-column', key)),

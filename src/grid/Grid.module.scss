@@ -29,7 +29,7 @@
 
       // grid-row, grid-column with css variables for each breakpoint
       @each $prop, $abbrev in (grid-row: grid-row, grid-column: grid-column) {
-        @include breakpoint-aware-css-variable($abbrev, 1);
+        @include breakpoint-aware-css-variable($abbrev, auto);
         @each $breakpoint in map-keys($breakpoints) {
           $infix: breakpoint-infix($breakpoint);
           @include breakpoint-up($breakpoint) {
@@ -40,9 +40,22 @@
         }
       }
 
-      // grid-order, grid-horizontal-alignment, grid-vertical-alignment with css variables for each breakpoint
-      @each $prop, $abbrev in (order: grid-order, align-items: grid-horizontal-alignment, justify-content: grid-vertical-alignment) {
+      // grid-order with css variables for each breakpoint
+      @each $prop, $abbrev in (order: grid-order) {
         @include breakpoint-aware-css-variable($abbrev, 0);
+        @each $breakpoint in map-keys($breakpoints) {
+          $infix: breakpoint-infix($breakpoint);
+          @include breakpoint-up($breakpoint) {
+            &.#{$abbrev} {
+              #{$prop}: var(--#{$abbrev}#{$infix});
+            }
+          }
+        }
+      }
+
+      // grid-horizontal-alignment, grid-vertical-alignment with css variables for each breakpoint
+      @each $prop, $abbrev in (align-items: grid-horizontal-alignment, justify-content: grid-vertical-alignment) {
+        @include breakpoint-aware-css-variable($abbrev, normal);
         @each $breakpoint in map-keys($breakpoints) {
           $infix: breakpoint-infix($breakpoint);
           @include breakpoint-up($breakpoint) {
@@ -95,7 +108,7 @@
 
     // grid-template-column with css variables for each breakpoint
     @each $prop, $abbrev in (grid-template-columns: grid-template-columns) {
-      @include breakpoint-aware-css-variable($abbrev, 1);
+      @include breakpoint-aware-css-variable($abbrev, none);
       @each $breakpoint in map-keys($breakpoints) {
         $infix: breakpoint-infix($breakpoint);
         @include breakpoint-up($breakpoint) {
