@@ -1,0 +1,32 @@
+@import "src/utils/Breakpoint";
+
+@mixin breakpoint-aware-css-color-variables($name, $default-value: (r: 0,g: 0,b: 0,a: 1)) {
+  @include breakpoint-aware-css-variable(#{$name}-r, map-get($default-value, r));
+  @include breakpoint-aware-css-variable(#{$name}-g, map-get($default-value, g));
+  @include breakpoint-aware-css-variable(#{$name}-b, map-get($default-value, b));
+  @include breakpoint-aware-css-variable(#{$name}-a, map-get($default-value, a));
+}
+
+@function rgba($color) {
+  @return #{"rgba(#{map-get($color, r)}, #{map-get($color, g)}, #{map-get($color, b)}, #{map-get($color, a)})"};
+}
+
+@function darken($color, $amount) {
+  @return (
+    r: calc(#{map-get($color, r)} * (1 - #{$amount})),
+    g: calc(#{map-get($color, g)} * (1 - #{$amount})),
+    b: calc(#{map-get($color, b)} * (1 - #{$amount})),
+    a: #{map-get($color, a)}
+  )
+}
+
+@function mix($first-color, $second-color, $weight) {
+  @return (
+    r: calc(#{map-get($first-color, r)} + (#{map-get($second-color, r)} - #{map-get($first-color, r)}) * #{$weight} * 0.01),
+    g: calc(#{map-get($first-color, g)} + (#{map-get($second-color, g)} - #{map-get($first-color, g)}) * #{$weight} * 0.01),
+    b: calc(#{map-get($first-color, b)} + (#{map-get($second-color, b)} - #{map-get($first-color, b)}) * #{$weight} * 0.01),
+    a: calc(#{map-get($first-color, a)} + (#{map-get($second-color, a)} - #{map-get($first-color, a)}) * #{$weight} * 0.01)
+  );
+}
+
+

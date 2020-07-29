@@ -1,0 +1,84 @@
+@import "src/utils/Breakpoint";
+@import "src/utils/ThemeColor";
+
+$alert-padding-y: .5rem;
+$alert-padding-x: .25rem;
+$alert-border-radius: .25rem;
+$alert-prefix-gap: .25rem;
+$alert-suffix-gap: .25rem;
+
+.alert {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: $alert-padding-y $alert-padding-x;
+  border: 1px solid transparent;
+  border-radius: $alert-border-radius;
+
+  // theme-color with css variables for each breakpoint
+  @include breakpoint-aware-css-color-variables(theme-color);
+
+  // color according to the theme-color
+  @each $prop, $abbrev in (color: theme-color) {
+    @each $breakpoint in map-keys($breakpoints) {
+      $infix: breakpoint-infix($breakpoint);
+      @include breakpoint-up($breakpoint) {
+        $color: mix(
+            (r:var(--#{$abbrev}-r#{$infix}), g:var(--#{$abbrev}-g#{$infix}), b:var(--#{$abbrev}-b#{$infix}), a:var(--#{$abbrev}-a#{$infix})),
+            (r:0, g:0, b:0, a:1),
+            48
+        );
+        #{$prop}: rgba($color);
+
+        a {
+          #{$prop}: rgba(darken($color, .1));
+        }
+      }
+    }
+  }
+
+  // background-color according to the theme-color
+  @each $prop, $abbrev in (background-color: theme-color) {
+    @each $breakpoint in map-keys($breakpoints) {
+      $infix: breakpoint-infix($breakpoint);
+      @include breakpoint-up($breakpoint) {
+        #{$prop}: rgba(mix(
+            (r:var(--#{$abbrev}-r#{$infix}), g:var(--#{$abbrev}-g#{$infix}), b:var(--#{$abbrev}-b#{$infix}), a:var(--#{$abbrev}-a#{$infix})),
+            (r: 255, g: 255, b: 255, a: 1),
+            80
+        ));
+      }
+    }
+  }
+
+  // border-color according to the theme-color
+  @each $prop, $abbrev in (border-color: theme-color) {
+    @each $breakpoint in map-keys($breakpoints) {
+      $infix: breakpoint-infix($breakpoint);
+      @include breakpoint-up($breakpoint) {
+        #{$prop}: rgba(mix(
+            (r:var(--#{$abbrev}-r#{$infix}), g:var(--#{$abbrev}-g#{$infix}), b:var(--#{$abbrev}-b#{$infix}), a:var(--#{$abbrev}-a#{$infix})),
+            (r: 255, g: 255, b: 255, a: 1),
+            72
+        ));
+      }
+    }
+  }
+
+  > .prefix {
+    display: flex;
+    flex-direction: column;
+    margin-right: $alert-prefix-gap;
+  }
+
+  > .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > .suffix {
+    display: flex;
+    flex-direction: column;
+    margin-left: $alert-suffix-gap;
+  }
+}

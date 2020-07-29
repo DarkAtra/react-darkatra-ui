@@ -1,7 +1,8 @@
 import * as React from 'react';
 import 'react-app-polyfill/ie11';
 import * as ReactDOM from 'react-dom';
-import {Grid, GridItem} from '../.';
+import {Alert, Grid, GridItem} from '../.';
+import {ThemeColor} from '../src/utils/ThemeColor';
 import './index.css';
 
 const App = () => {
@@ -166,6 +167,14 @@ const App = () => {
                         <input type="number" placeholder="Enter your age."/>
                     </GridItem>
                 </Grid>
+            </GridItem>
+            <GridItem>
+                <Alert prefix={'★'} themeColor={{xs: ThemeColor.PRIMARY, lg: ThemeColor.INFO}}>
+                    <div>
+                        <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                        magna aliquyam erat, sed diam voluptua.
+                    </div>
+                </Alert>
             </GridItem>
         </Grid>
     );
