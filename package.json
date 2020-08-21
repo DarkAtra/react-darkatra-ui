@@ -41,5 +41,8 @@
     "moduleNameMapper": {
       "\\.(scss|css)$": "identity-obj-proxy"
     }
+  },
+  "np": {
+    "contents": "dist"
   }
 }
