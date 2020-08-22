@@ -1,3 +1,6 @@
+import {Breakpoint, withBreakpointSuffix} from './Breakpoint';
+import {mapKeys, mapValues} from './Common';
+
 export enum ThemeColor {
     PRIMARY = 'PRIMARY',
     SECONDARY = 'SECONDARY',
@@ -35,4 +38,17 @@ export const getThemeColorRgba: (themeColor: ThemeColor) => Color = (themeColor)
         case ThemeColor.DARK:
             return {r: 18, g: 38, b: 63, a: 1};
     }
+};
+
+export const getThemeColorRgbaStyles: (breakpointValues: { [key in Breakpoint]: ThemeColor }) => { [key: string]: Color } = (breakpointValues) => {
+    return {
+        ...mapKeys(mapValues(breakpointValues, v => getThemeColorRgba(v).r),
+            key => withBreakpointSuffix('--theme-color-r', key)),
+        ...mapKeys(mapValues(breakpointValues, v => getThemeColorRgba(v).g),
+            key => withBreakpointSuffix('--theme-color-g', key)),
+        ...mapKeys(mapValues(breakpointValues, v => getThemeColorRgba(v).b),
+            key => withBreakpointSuffix('--theme-color-b', key)),
+        ...mapKeys(mapValues(breakpointValues, v => getThemeColorRgba(v).a),
+            key => withBreakpointSuffix('--theme-color-a', key))
+    };
 };

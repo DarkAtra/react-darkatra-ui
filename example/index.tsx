@@ -1,8 +1,7 @@
 import * as React from 'react';
 import 'react-app-polyfill/ie11';
 import * as ReactDOM from 'react-dom';
-import {Alert, Grid, GridItem} from '../.';
-import {ThemeColor} from '../src/utils/ThemeColor';
+import {Alert, Button, Grid, GridItem, Size, ThemeColor} from '../.';
 import './index.css';
 
 const App = () => {
@@ -175,6 +174,25 @@ const App = () => {
                         magna aliquyam erat, sed diam voluptua.
                     </div>
                 </Alert>
+            </GridItem>
+            <GridItem hAlignContent={'left'}>
+                <Grid columns={'auto auto auto'} gap={'.5rem'}>
+                    <GridItem vAlignContent={'center'}>
+                        <Button themeColor={{xs: ThemeColor.WARNING, lg: ThemeColor.PRIMARY}}>
+                            Test 1
+                        </Button>
+                    </GridItem>
+                    <GridItem vAlignContent={'center'}>
+                        <Button size={{xs: Size.LARGE, lg: Size.NORMAL}}>
+                            Test 2
+                        </Button>
+                    </GridItem>
+                    <GridItem>
+                        <Button size={Size.LARGE}>
+                            Test 3
+                        </Button>
+                    </GridItem>
+                </Grid>
             </GridItem>
         </Grid>
     );

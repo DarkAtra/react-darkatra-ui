@@ -1,5 +1,7 @@
 @import "src/utils/Breakpoint";
 
+$theme-color-css-variable-name: theme-color;
+
 @mixin breakpoint-aware-css-color-variables($name, $default-value: (r: 0,g: 0,b: 0,a: 1)) {
   @include breakpoint-aware-css-variable(#{$name}-r, map-get($default-value, r));
   @include breakpoint-aware-css-variable(#{$name}-g, map-get($default-value, g));
@@ -9,6 +11,31 @@
 
 @function rgba($color) {
   @return #{"rgba(#{map-get($color, r)}, #{map-get($color, g)}, #{map-get($color, b)}, #{map-get($color, a)})"};
+}
+
+$yiq-contrasted-threshold: 150 !default;
+$contrast_color_light: (r: 255, g: 255, b: 255, a: 1);
+$contrast_color_dark: (r: 17, g: 17, b: 17, a: 1);
+
+@function contrast-color($color, $light: $contrast_color_light, $dark: $contrast_color_dark) {
+  $r: #{map-get($color, r)};
+  $g: #{map-get($color, g)};
+  $b: #{map-get($color, b)};
+
+  // TODO: should also take the alpha of the color into account
+  $yiq: "((#{$r} * 299) + (#{$g} * 587) + (#{$b} * 114)) - #{$yiq-contrasted-threshold} * 1000";
+
+  $is_below_threshold: "min(min(#{$yiq}, 0) * -1, 1)";
+  $is_not_below_threshold: "(1 - min(min(#{$yiq}, 0) * -1, 1))";
+
+  $result_color: "calc((#{$is_not_below_threshold} * 17) + (#{$is_below_threshold} * 255))";
+
+  @return (
+    r: calc((#{$is_not_below_threshold} * #{map-get($dark, r)}) + (#{$is_below_threshold} * #{map-get($light, r)})),
+    g: calc((#{$is_not_below_threshold} * #{map-get($dark, g)}) + (#{$is_below_threshold} * #{map-get($light, g)})),
+    b: calc((#{$is_not_below_threshold} * #{map-get($dark, b)}) + (#{$is_below_threshold} * #{map-get($light, b)})),
+    a: calc((#{$is_not_below_threshold} * #{map-get($dark, a)}) + (#{$is_below_threshold} * #{map-get($light, a)}))
+  );
 }
 
 @function darken($color, $amount) {

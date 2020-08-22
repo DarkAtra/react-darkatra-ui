@@ -1,7 +1,7 @@
 import React, {CSSProperties, HTMLAttributes, ReactNode} from 'react';
-import {BreakpointAwareValue, getValuePerBreakpointAndFillGaps, withBreakpointSuffix} from '../utils/Breakpoint';
-import {classes, mapKeys, mapValues, Modify} from '../utils/Common';
-import {getThemeColorRgba, ThemeColor} from '../utils/ThemeColor';
+import {BreakpointAwareValue, getValuePerBreakpointAndFillGaps} from '../utils/Breakpoint';
+import {classes, Modify} from '../utils/Common';
+import {getThemeColorRgbaStyles, ThemeColor} from '../utils/ThemeColor';
 import styles from './Alert.module.scss';
 
 export type AlertProps = Modify<HTMLAttributes<HTMLDivElement>, {
@@ -30,14 +30,7 @@ const Alert = (props: AlertProps) => {
     const breakpointValues = getValuePerBreakpointAndFillGaps(themeColor, ThemeColor.PRIMARY);
     const _style = {
         ...style,
-        ...mapKeys(mapValues(breakpointValues, v => getThemeColorRgba(v).r),
-            key => withBreakpointSuffix('--theme-color-r', key)),
-        ...mapKeys(mapValues(breakpointValues, v => getThemeColorRgba(v).g),
-            key => withBreakpointSuffix('--theme-color-g', key)),
-        ...mapKeys(mapValues(breakpointValues, v => getThemeColorRgba(v).b),
-            key => withBreakpointSuffix('--theme-color-b', key)),
-        ...mapKeys(mapValues(breakpointValues, v => getThemeColorRgba(v).a),
-            key => withBreakpointSuffix('--theme-color-a', key))
+        ...getThemeColorRgbaStyles(breakpointValues)
     } as CSSProperties;
 
     return (

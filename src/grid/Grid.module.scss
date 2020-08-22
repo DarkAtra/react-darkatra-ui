@@ -1,10 +1,11 @@
 @import "src/utils/Breakpoint";
+@import "src/utils/Size";
 
-// fallback for older browsers
 .grid {
   max-width: 100%;
   margin: 0;
   padding: 0;
+  line-height: $line-height-base;
 
   // direct children are always grid items as specified by the specs
   > .grid-item {
@@ -12,6 +13,7 @@
     width: 100%;
     max-width: 100%;
     margin-bottom: 10px;
+    line-height: $line-height-base;
   }
 }
 
