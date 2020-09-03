@@ -168,12 +168,80 @@ const App = () => {
                 </Grid>
             </GridItem>
             <GridItem>
-                <Alert prefix={'★'} themeColor={{xs: ThemeColor.PRIMARY, lg: ThemeColor.INFO}}>
-                    <div>
-                        <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                        magna aliquyam erat, sed diam voluptua.
-                    </div>
-                </Alert>
+                <Grid gap={'1rem'}>
+                    <GridItem>
+                        <Alert prefix={'★'} themeColor={{xs: ThemeColor.SECONDARY, lg: ThemeColor.PRIMARY}}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.SECONDARY} suffix={'★'}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.INFO}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.SUCCESS}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.WARNING}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.DANGER}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.LIGHT}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.DARK}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                </Grid>
             </GridItem>
             <GridItem hAlignContent={'left'}>
                 <Grid columns={'auto auto auto'} gap={'.5rem'}>

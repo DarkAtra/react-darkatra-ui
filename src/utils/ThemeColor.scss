@@ -15,7 +15,7 @@ $theme-color-css-variable-name: theme-color;
 
 $yiq-contrasted-threshold: 150 !default;
 $contrast_color_light: (r: 255, g: 255, b: 255, a: 1);
-$contrast_color_dark: (r: 17, g: 17, b: 17, a: 1);
+$contrast_color_dark: (r: 40, g: 62, b: 89, a: 1);
 
 @function contrast-color($color, $light: $contrast_color_light, $dark: $contrast_color_dark) {
   $r: #{map-get($color, r)};
