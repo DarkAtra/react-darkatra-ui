@@ -7,6 +7,7 @@ $button-padding-x: .75rem;
 $button-border-radius: .25rem;
 $button-prefix-gap: .25rem;
 $button-suffix-gap: .25rem;
+$outline-css-variable-name: outline;
 
 .button {
   display: inline-flex;
@@ -19,6 +20,7 @@ $button-suffix-gap: .25rem;
   text-align: center;
   text-decoration: none;
   line-height: $line-height-base;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
   &:not(:disabled):not(.disabled) {
     cursor: pointer;
@@ -27,6 +29,7 @@ $button-suffix-gap: .25rem;
   // theme-color with css variables for each breakpoint
   @include breakpoint-aware-css-color-variables($theme-color-css-variable-name);
   @include breakpoint-aware-css-variable($size-css-variable-name, 1);
+  @include breakpoint-aware-css-variable($outline-css-variable-name, 0);
 
   // color, background-color, border-color according to the theme-color
   // padding, font-size according to the size
@@ -35,8 +38,16 @@ $button-suffix-gap: .25rem;
     @include breakpoint-up($breakpoint) {
       $color: (r:var(--#{$theme-color-css-variable-name}-r#{$infix}), g:var(--#{$theme-color-css-variable-name}-g#{$infix}), b:var(--#{$theme-color-css-variable-name}-b#{$infix}), a:var(--#{$theme-color-css-variable-name}-a#{$infix}));
 
-      color: rgba(contrast-color($color));
-      background-color: rgba($color);
+      color: rgba(conditional-color(
+          var(--#{$outline-css-variable-name}#{$infix}),
+          $color,
+          contrast-color($color)
+      ));
+      background-color: rgba(conditional-color(
+          var(--#{$outline-css-variable-name}#{$infix}),
+          (r:255, g:255, b:255, a:0),
+          $color
+      ));
       border-color: rgba($color);
       font-size: calc(#{$font-size-base} * var(--#{$size-css-variable-name}#{$infix}));
       padding: calc(#{$button-padding-y} * var(--#{$size-css-variable-name}#{$infix})) calc(#{$button-padding-x} * var(--#{$size-css-variable-name}#{$infix}));

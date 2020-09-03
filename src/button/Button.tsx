@@ -41,7 +41,9 @@ const Button = (props: ButtonProps) => {
         ...style,
         ...getThemeColorRgbaStyles(breakpointValues),
         ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(size, Size.NORMAL), v => getSizeMultiplier(v)),
-                key => withBreakpointSuffix('--size', key))
+            key => withBreakpointSuffix('--size', key)),
+        ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(outline, false), v => v ? 1 : 0),
+            key => withBreakpointSuffix('--outline', key))
     } as CSSProperties;
 
     const _children = <>

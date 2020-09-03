@@ -17,6 +17,15 @@ $yiq-contrasted-threshold: 150 !default;
 $contrast_color_light: (r: 255, g: 255, b: 255, a: 1);
 $contrast_color_dark: (r: 40, g: 62, b: 89, a: 1);
 
+@function conditional-color($condition, $true_color, $false_color) {
+  @return (
+    r: calc((#{$condition} * #{map-get($true_color, r)}) + ((1 - #{$condition}) * #{map-get($false_color, r)})),
+    g: calc((#{$condition} * #{map-get($true_color, g)}) + ((1 - #{$condition}) * #{map-get($false_color, g)})),
+    b: calc((#{$condition} * #{map-get($true_color, b)}) + ((1 - #{$condition}) * #{map-get($false_color, b)})),
+    a: calc((#{$condition} * #{map-get($true_color, a)}) + ((1 - #{$condition}) * #{map-get($false_color, a)}))
+  );
+}
+
 @function contrast-color($color, $light: $contrast_color_light, $dark: $contrast_color_dark) {
   $r: #{map-get($color, r)};
   $g: #{map-get($color, g)};
@@ -26,15 +35,11 @@ $contrast_color_dark: (r: 40, g: 62, b: 89, a: 1);
   $yiq: "((#{$r} * 299) + (#{$g} * 587) + (#{$b} * 114)) - #{$yiq-contrasted-threshold} * 1000";
 
   $is_below_threshold: "min(min(#{$yiq}, 0) * -1, 1)";
-  $is_not_below_threshold: "(1 - min(min(#{$yiq}, 0) * -1, 1))";
 
-  $result_color: "calc((#{$is_not_below_threshold} * 17) + (#{$is_below_threshold} * 255))";
-
-  @return (
-    r: calc((#{$is_not_below_threshold} * #{map-get($dark, r)}) + (#{$is_below_threshold} * #{map-get($light, r)})),
-    g: calc((#{$is_not_below_threshold} * #{map-get($dark, g)}) + (#{$is_below_threshold} * #{map-get($light, g)})),
-    b: calc((#{$is_not_below_threshold} * #{map-get($dark, b)}) + (#{$is_below_threshold} * #{map-get($light, b)})),
-    a: calc((#{$is_not_below_threshold} * #{map-get($dark, a)}) + (#{$is_below_threshold} * #{map-get($light, a)}))
+  @return conditional-color(
+      $is_below_threshold,
+      $light,
+      $dark
   );
 }
 

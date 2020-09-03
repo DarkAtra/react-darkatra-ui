@@ -243,24 +243,38 @@ const App = () => {
                     </GridItem>
                 </Grid>
             </GridItem>
-            <GridItem hAlignContent={'left'}>
-                <Grid columns={'auto auto auto'} gap={'.5rem'}>
-                    <GridItem vAlignContent={'center'}>
-                        <Button themeColor={{xs: ThemeColor.WARNING, lg: ThemeColor.PRIMARY}}>
-                            Test 1
-                        </Button>
-                    </GridItem>
-                    <GridItem vAlignContent={'center'}>
-                        <Button size={{xs: Size.LARGE, lg: Size.NORMAL}}>
-                            Test 2
-                        </Button>
-                    </GridItem>
-                    <GridItem>
-                        <Button size={Size.LARGE}>
-                            Test 3
-                        </Button>
-                    </GridItem>
-                </Grid>
+            <GridItem>
+                <div style={{display: 'flex', flexWrap: 'wrap', gap: '.25rem', alignItems: "center"}}>
+                    {Object.keys(Size).map((size: Size) => (
+                        <GridItem key={size}>
+                            <Button size={size}>
+                                {size.charAt(0) + size.substring(1).toLowerCase()} Button
+                            </Button>
+                        </GridItem>
+                    ))}
+                </div>
+            </GridItem>
+            <GridItem>
+                <div style={{display: 'flex', flexWrap: 'wrap', gap: '.25rem'}}>
+                    {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
+                        <GridItem key={themeColor}>
+                            <Button themeColor={themeColor}>
+                                {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                            </Button>
+                        </GridItem>
+                    ))}
+                </div>
+            </GridItem>
+            <GridItem>
+                <div style={{display: 'flex', flexWrap: 'wrap', gap: '.25rem'}}>
+                    {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
+                        <GridItem key={themeColor}>
+                            <Button themeColor={themeColor} outline={{xs: false, lg: true}}>
+                                {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                            </Button>
+                        </GridItem>
+                    ))}
+                </div>
             </GridItem>
         </Grid>
     );
