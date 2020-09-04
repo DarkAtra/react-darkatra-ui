@@ -25,10 +25,6 @@ const Grid = (props: GridProps) => {
 
     const _className = classes(
         styles.grid,
-        styles.gridGap,
-        styles.gridInline,
-        styles.gridDense,
-        styles.gridTemplateColumns,
         className
     );
 

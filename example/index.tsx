@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'react-app-polyfill/ie11';
 import * as ReactDOM from 'react-dom';
-import {Alert, Button, Grid, GridItem, Size, ThemeColor} from '../.';
+import {Alert, Button, Flex, Grid, GridItem, Size, ThemeColor} from '../.';
 import './index.css';
 
 const App = () => {
@@ -170,7 +170,7 @@ const App = () => {
             <GridItem>
                 <Grid gap={'1rem'}>
                     <GridItem>
-                        <Alert prefix={'★'} themeColor={{xs: ThemeColor.SECONDARY, lg: ThemeColor.PRIMARY}}>
+                        <Alert prefix={'★'} themeColor={{xs: ThemeColor.SECONDARY, lg: ThemeColor.PRIMARY}} alignItems={{xs: 'start', lg: 'center'}}>
                             <div>
                                 <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
                                 dolore
@@ -244,37 +244,31 @@ const App = () => {
                 </Grid>
             </GridItem>
             <GridItem>
-                <div style={{display: 'flex', flexWrap: 'wrap', gap: '.25rem', alignItems: "center"}}>
+                <Flex alignItems={'center'} gap={'.25rem'} wrap={true}>
                     {Object.keys(Size).map((size: Size) => (
-                        <GridItem key={size}>
-                            <Button size={size}>
-                                {size.charAt(0) + size.substring(1).toLowerCase()} Button
-                            </Button>
-                        </GridItem>
+                        <Button key={size} size={size}>
+                            {size.charAt(0) + size.substring(1).toLowerCase()} Button
+                        </Button>
                     ))}
-                </div>
+                </Flex>
             </GridItem>
             <GridItem>
-                <div style={{display: 'flex', flexWrap: 'wrap', gap: '.25rem'}}>
+                <Flex gap={'.25rem'} wrap={true}>
                     {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
-                        <GridItem key={themeColor}>
-                            <Button themeColor={themeColor}>
-                                {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
-                            </Button>
-                        </GridItem>
+                        <Button key={themeColor} themeColor={themeColor}>
+                            {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                        </Button>
                     ))}
-                </div>
+                </Flex>
             </GridItem>
             <GridItem>
-                <div style={{display: 'flex', flexWrap: 'wrap', gap: '.25rem'}}>
+                <Flex gap={'.25rem'} wrap={true}>
                     {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
-                        <GridItem key={themeColor}>
-                            <Button themeColor={themeColor} outline={{xs: false, lg: true}}>
-                                {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
-                            </Button>
-                        </GridItem>
+                        <Button key={themeColor} themeColor={themeColor} outline={{xs: false, lg: true}}>
+                            {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                        </Button>
                     ))}
-                </div>
+                </Flex>
             </GridItem>
         </Grid>
     );

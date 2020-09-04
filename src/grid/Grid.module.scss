@@ -1,123 +1,64 @@
 @import "src/utils/Breakpoint";
 @import "src/utils/Size";
 
+$grid-inline-css-variable-name: grid-inline;
+$grid-template-columns-css-variable-name: grid-template-columns;
+$grid-gap-css-variable-name: grid-gap;
+$grid-dense-css-variable-name: grid-dense;
+
+$grid-column-css-variable-name: grid-column;
+$grid-row-css-variable-name: grid-row;
+$grid-order-css-variable-name: grid-order;
+$grid-horizontal-alignment-css-variable-name: grid-horizontal-alignment;
+$grid-vertical-alignment-css-variable-name: grid-vertical-alignment;
+
 .grid {
+  display: grid;
   max-width: 100%;
   margin: 0;
   padding: 0;
   line-height: $line-height-base;
 
+  @include breakpoint-aware-css-variable($grid-inline-css-variable-name, grid);
+  @include breakpoint-aware-css-variable($grid-template-columns-css-variable-name, none);
+  @include breakpoint-aware-css-variable($grid-gap-css-variable-name, 0);
+  @include breakpoint-aware-css-variable($grid-dense-css-variable-name, row);
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint);
+
+    @include breakpoint-up($breakpoint) {
+      display: var(--#{$grid-inline-css-variable-name}#{$infix});
+      grid-template-columns: var(--#{$grid-template-columns-css-variable-name}#{$infix});
+      gap: var(--#{$grid-gap-css-variable-name}#{$infix});
+      grid-auto-flow: var(--#{$grid-dense-css-variable-name}#{$infix});
+    }
+  }
+
   // direct children are always grid items as specified by the specs
   > .grid-item {
-    display: block;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: auto;
     max-width: 100%;
-    margin-bottom: 10px;
-    line-height: $line-height-base;
-  }
-}
+    margin: 0;
+    line-height: inherit;
 
-@supports (grid-template-columns: 1fr) {
-  .grid {
-    display: grid;
-    align-items: stretch;
+    @include breakpoint-aware-css-variable($grid-column-css-variable-name, auto);
+    @include breakpoint-aware-css-variable($grid-row-css-variable-name, auto);
+    @include breakpoint-aware-css-variable($grid-order-css-variable-name, 0);
+    @include breakpoint-aware-css-variable($grid-horizontal-alignment-css-variable-name, normal);
+    @include breakpoint-aware-css-variable($grid-vertical-alignment-css-variable-name, normal);
 
-    // direct children are always grid items as specified by the specs
-    > .grid-item {
-      display: flex;
-      flex-direction: column;
-      width: auto;
-      margin-bottom: 0;
+    @each $breakpoint in map-keys($breakpoints) {
+      $infix: breakpoint-infix($breakpoint);
 
-      // grid-row, grid-column with css variables for each breakpoint
-      @each $prop, $abbrev in (grid-row: grid-row, grid-column: grid-column) {
-        @include breakpoint-aware-css-variable($abbrev, auto);
-        @each $breakpoint in map-keys($breakpoints) {
-          $infix: breakpoint-infix($breakpoint);
-          @include breakpoint-up($breakpoint) {
-            &.#{$abbrev} {
-              #{$prop}: span var(--#{$abbrev}#{$infix});
-            }
-          }
-        }
-      }
-
-      // grid-order with css variables for each breakpoint
-      @each $prop, $abbrev in (order: grid-order) {
-        @include breakpoint-aware-css-variable($abbrev, 0);
-        @each $breakpoint in map-keys($breakpoints) {
-          $infix: breakpoint-infix($breakpoint);
-          @include breakpoint-up($breakpoint) {
-            &.#{$abbrev} {
-              #{$prop}: var(--#{$abbrev}#{$infix});
-            }
-          }
-        }
-      }
-
-      // grid-horizontal-alignment, grid-vertical-alignment with css variables for each breakpoint
-      @each $prop, $abbrev in (align-items: grid-horizontal-alignment, justify-content: grid-vertical-alignment) {
-        @include breakpoint-aware-css-variable($abbrev, normal);
-        @each $breakpoint in map-keys($breakpoints) {
-          $infix: breakpoint-infix($breakpoint);
-          @include breakpoint-up($breakpoint) {
-            &.#{$abbrev} {
-              #{$prop}: var(--#{$abbrev}#{$infix});
-            }
-          }
-        }
-      }
-    }
-
-    // grid-inline with css variables for each breakpoint
-    @each $prop, $abbrev in (display: grid-inline) {
-      @include breakpoint-aware-css-variable($abbrev, grid);
-      @each $breakpoint in map-keys($breakpoints) {
-        $infix: breakpoint-infix($breakpoint);
-        @include breakpoint-up($breakpoint) {
-          &.#{$abbrev} {
-            #{$prop}: var(--#{$abbrev}#{$infix});
-          }
-        }
-      }
-    }
-
-    // grid-dense with css variables for each breakpoint
-    @each $prop, $abbrev in (grid-auto-flow: grid-dense) {
-      @include breakpoint-aware-css-variable($abbrev, row);
-      @each $breakpoint in map-keys($breakpoints) {
-        $infix: breakpoint-infix($breakpoint);
-        @include breakpoint-up($breakpoint) {
-          &.#{$abbrev} {
-            #{$prop}: var(--#{$abbrev}#{$infix});
-          }
-        }
-      }
-    }
-
-    // grid-gap with css variables for each breakpoint
-    @each $prop, $abbrev in (grid-gap: grid-gap) {
-      @include breakpoint-aware-css-variable($abbrev, 0);
-      @each $breakpoint in map-keys($breakpoints) {
-        $infix: breakpoint-infix($breakpoint);
-        @include breakpoint-up($breakpoint) {
-          &.#{$abbrev} {
-            #{$prop}: var(--#{$abbrev}#{$infix});
-          }
-        }
-      }
-    }
-
-    // grid-template-column with css variables for each breakpoint
-    @each $prop, $abbrev in (grid-template-columns: grid-template-columns) {
-      @include breakpoint-aware-css-variable($abbrev, none);
-      @each $breakpoint in map-keys($breakpoints) {
-        $infix: breakpoint-infix($breakpoint);
-        @include breakpoint-up($breakpoint) {
-          &.#{$abbrev} {
-            #{$prop}: var(--#{$abbrev}#{$infix});
-          }
-        }
+      @include breakpoint-up($breakpoint) {
+        grid-column: span var(--#{$grid-column-css-variable-name}#{$infix});
+        grid-row: span var(--#{$grid-row-css-variable-name}#{$infix});
+        order: var(--#{$grid-order-css-variable-name}#{$infix});
+        align-items: var(--#{$grid-horizontal-alignment-css-variable-name}#{$infix});
+        justify-content: var(--#{$grid-vertical-alignment-css-variable-name}#{$infix});
       }
     }
   }

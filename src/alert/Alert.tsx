@@ -1,4 +1,5 @@
 import React, {CSSProperties, HTMLAttributes, ReactNode} from 'react';
+import Flex, {FlexAlignItems} from '../flex/Flex';
 import {BreakpointAwareValue, getValuePerBreakpointAndFillGaps} from '../utils/Breakpoint';
 import {classes, Modify} from '../utils/Common';
 import {getThemeColorRgbaStyles, ThemeColor} from '../utils/ThemeColor';
@@ -6,6 +7,7 @@ import styles from './Alert.module.scss';
 
 export type AlertProps = Modify<HTMLAttributes<HTMLDivElement>, {
     themeColor?: BreakpointAwareValue<ThemeColor>;
+    alignItems?: BreakpointAwareValue<FlexAlignItems>
     prefix?: ReactNode;
     suffix?: ReactNode;
 }>;
@@ -15,6 +17,7 @@ const Alert = (props: AlertProps) => {
     const {
         children,
         themeColor = ThemeColor.PRIMARY,
+        alignItems = 'center',
         prefix,
         suffix,
         className,
@@ -34,7 +37,7 @@ const Alert = (props: AlertProps) => {
     } as CSSProperties;
 
     return (
-        <div className={_className} style={_style} {...rest}>
+        <Flex alignItems={alignItems} gap={'.75rem'} className={_className} style={_style} {...rest}>
             {prefix ? (
                 <div className={styles.prefix}>{prefix}</div>
             ) : null}
@@ -42,7 +45,7 @@ const Alert = (props: AlertProps) => {
             {suffix ? (
                 <div className={styles.suffix}>{suffix}</div>
             ) : null}
-        </div>
+        </Flex>
     );
 };
 

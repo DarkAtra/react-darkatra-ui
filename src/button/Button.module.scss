@@ -35,6 +35,7 @@ $outline-css-variable-name: outline;
   // padding, font-size according to the size
   @each $breakpoint in map-keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint);
+
     @include breakpoint-up($breakpoint) {
       $color: (r:var(--#{$theme-color-css-variable-name}-r#{$infix}), g:var(--#{$theme-color-css-variable-name}-g#{$infix}), b:var(--#{$theme-color-css-variable-name}-b#{$infix}), a:var(--#{$theme-color-css-variable-name}-a#{$infix}));
 
