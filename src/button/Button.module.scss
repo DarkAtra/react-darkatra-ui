@@ -5,8 +5,7 @@
 $button-padding-y: .375rem;
 $button-padding-x: .75rem;
 $button-border-radius: .25rem;
-$button-prefix-gap: .25rem;
-$button-suffix-gap: .25rem;
+$button-prefix-suffix-gap: .25rem;
 $outline-css-variable-name: outline;
 
 .button {
@@ -16,9 +15,10 @@ $outline-css-variable-name: outline;
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: $button-border-radius;
+  gap: $button-prefix-suffix-gap;
   user-select: none;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none !important;
   line-height: $line-height-base;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
@@ -72,7 +72,6 @@ $outline-css-variable-name: outline;
   > .prefix {
     display: flex;
     flex-direction: column;
-    margin-right: $button-prefix-gap;
   }
 
   > .content {
@@ -83,6 +82,5 @@ $outline-css-variable-name: outline;
   > .suffix {
     display: flex;
     flex-direction: column;
-    margin-left: $button-suffix-gap;
   }
 }
