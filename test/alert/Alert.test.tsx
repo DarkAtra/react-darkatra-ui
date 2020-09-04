@@ -1,113 +1,79 @@
+import {render} from '@testing-library/react';
 import React from 'react';
-import {render, unmountComponentAtNode} from 'react-dom';
-import {act} from 'react-dom/test-utils';
 import {Alert} from '../../src';
 import {getThemeColorRgba, ThemeColor} from '../../src/utils/ThemeColor';
 
 describe('alert component test', () => {
 
-    let container: HTMLElement = null as unknown as HTMLElement;
-
-    beforeEach(() => {
-        // setup a DOM element as a render target
-        container = document.createElement('div');
-        document.body.appendChild(container);
-    });
-
-    afterEach(() => {
-        // cleanup on exiting
-        if (container != null) {
-            unmountComponentAtNode(container);
-            container.remove();
-            container = null as unknown as HTMLElement;
-        }
-    });
-
     it('should render without crashing', () => {
-        render(<Alert>Test</Alert>, container);
+        const {container} = render(<Alert>content</Alert>);
 
-        const alert = container.querySelector(':first-child');
+        const alert = container.firstChild;
         expect(alert).not.toBeNull();
     });
 
     it('should render without prefix and suffix', () => {
-        render(<Alert>Test</Alert>, container);
+        const {container} = render(<Alert>content</Alert>);
 
-        const alert = container.querySelector(':first-child');
-        expect(alert).not.toBeNull();
-        expect(alert!!.children.length).toBe(1);
-        expect(alert!!.children[0].classList).toContain('content');
-        expect(alert!!.children[0].textContent).toBe('Test');
+        expect(container.firstChild).toBeDefined();
+        expect(container.firstChild!!).toHaveClass('alert');
+        expect(container.firstChild!!.firstChild).toBeContent();
     });
 
     it('should render with prefix', () => {
-        render(<Alert prefix={'prefix'}>Test</Alert>, container);
+        const {container} = render(<Alert prefix={'prefix'}>content</Alert>);
 
-        const alert = container.querySelector(':first-child');
-        expect(alert).not.toBeNull();
-        expect(alert!!.children.length).toBe(2);
-        expect(alert!!.children[0].classList).toContain('prefix');
-        expect(alert!!.children[0].textContent).toBe('prefix');
+        expect(container.firstChild).toBeDefined();
+        expect(container.firstChild!!).toHaveClass('alert');
+        expect(container.firstChild!!.firstChild).toBePrefix();
+        expect(container.firstChild!!.lastChild).toBeContent();
     });
 
     it('should render with suffix', () => {
-        render(<Alert suffix={'suffix'}>Test</Alert>, container);
+        const {container} = render(<Alert suffix={'suffix'}>content</Alert>);
 
-        const alert = container.querySelector(':first-child');
-        expect(alert).not.toBeNull();
-        expect(alert!!.children.length).toBe(2);
-        expect(alert!!.children[1].classList).toContain('suffix');
-        expect(alert!!.children[1].textContent).toBe('suffix');
+        expect(container.firstChild).toBeDefined();
+        expect(container.firstChild!!).toHaveClass('alert');
+        expect(container.firstChild!!.firstChild).toBeContent();
+        expect(container.firstChild!!.lastChild).toBeSuffix();
     });
 
     it('should render with prefix and suffix', () => {
-        render(<Alert prefix={'prefix'} suffix={'suffix'}>Test</Alert>, container);
+        const {container} = render(<Alert prefix={'prefix'} suffix={'suffix'}>content</Alert>);
 
-        const alert = container.querySelector(':first-child');
-        expect(alert).not.toBeNull();
-        expect(alert!!.children.length).toBe(3);
-        expect(alert!!.children[0].classList).toContain('prefix');
-        expect(alert!!.children[0].textContent).toBe('prefix');
-        expect(alert!!.children[1].classList).toContain('content');
-        expect(alert!!.children[1].textContent).toBe('Test');
-        expect(alert!!.children[2].classList).toContain('suffix');
-        expect(alert!!.children[2].textContent).toBe('suffix');
+        expect(container.firstChild).toBeDefined();
+        expect(container.firstChild!!).toHaveClass('alert');
+
+        expect(container.firstChild!!.firstChild).toBePrefix();
+        expect(container.firstChild!!.childNodes.item(1)).toBeContent();
+        expect(container.firstChild!!.lastChild).toBeSuffix();
     });
 
     it('should preserve css classes', () => {
-        render(<Alert className="test-class">Test</Alert>, container);
+        const {container} = render(<Alert className="test-class">content</Alert>);
 
-        const alert = container.querySelector(':first-child');
-        expect(alert).not.toBeNull();
-        expect(alert!!.classList).toContain('alert');
-        expect(alert!!.classList).toContain('test-class');
+        expect(container.firstChild).toBeDefined();
+        expect(container.firstChild!!).toHaveClass('alert', 'test-class');
     });
 
     it('should preserve css styles', () => {
-        render(<Alert style={{textAlign: 'center'}}>Test</Alert>, container);
+        const {container} = render(<Alert style={{textAlign: 'center'}}>content</Alert>);
 
-        const alert = container.querySelector<HTMLDivElement>(':first-child');
-        expect(alert).not.toBeNull();
-        expect(alert!!.style.textAlign).toBe('center');
+        expect(container.firstChild).toBeDefined();
+        expect(container.firstChild!!).toHaveStyle('text-align: center;');
     });
 
     xit('should set css variables based on the theme color defaulting to PRIMARY', () => {
-        act(() => render(<Alert>Test</Alert>, container));
+        const {container} = render(<Alert>content</Alert>);
 
-        const alert = container.querySelector<HTMLDivElement>(':first-child');
-        expect(alert).not.toBeNull();
-
-        const style = alert!!.style;
-        expect(style).not.toBeNull();
+        expect(container.firstChild).toBeDefined();
 
         const expectedThemeColorRgba = getThemeColorRgba(ThemeColor.PRIMARY);
-        const r = style.getPropertyValue('--theme-color-r-xs');
-        const g = style.getPropertyValue('--theme-color-g-xs');
-        const b = style.getPropertyValue('--theme-color-b-xs');
-        const a = style.getPropertyValue('--theme-color-a-xs');
-        expect(r).toBe(expectedThemeColorRgba.r);
-        expect(g).toBe(expectedThemeColorRgba.g);
-        expect(b).toBe(expectedThemeColorRgba.b);
-        expect(a).toBe(expectedThemeColorRgba.a);
+        expect(container.firstChild).toHaveStyle({
+            '--theme-color-r-xs': expectedThemeColorRgba.r,
+            '--theme-color-g-xs': expectedThemeColorRgba.g,
+            '--theme-color-b-xs': expectedThemeColorRgba.b,
+            '--theme-color-a-xs': expectedThemeColorRgba.a
+        });
     });
 });
