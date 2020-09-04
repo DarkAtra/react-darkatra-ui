@@ -1,0 +1,88 @@
+@import "src/utils/Breakpoint";
+@import "src/utils/Size";
+@import "src/utils/ThemeColor";
+
+$button-padding-y: .375rem;
+$button-padding-x: .75rem;
+$button-border-radius: .25rem;
+$button-prefix-gap: .25rem;
+$button-suffix-gap: .25rem;
+$outline-css-variable-name: outline;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: $button-border-radius;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  line-height: $line-height-base;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+  &:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+
+  // theme-color with css variables for each breakpoint
+  @include breakpoint-aware-css-color-variables($theme-color-css-variable-name);
+  @include breakpoint-aware-css-variable($size-css-variable-name, 1);
+  @include breakpoint-aware-css-variable($outline-css-variable-name, 0);
+
+  // color, background-color, border-color according to the theme-color
+  // padding, font-size according to the size
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint);
+
+    @include breakpoint-up($breakpoint) {
+      $color: (r:var(--#{$theme-color-css-variable-name}-r#{$infix}), g:var(--#{$theme-color-css-variable-name}-g#{$infix}), b:var(--#{$theme-color-css-variable-name}-b#{$infix}), a:var(--#{$theme-color-css-variable-name}-a#{$infix}));
+
+      color: rgba(conditional-color(
+          var(--#{$outline-css-variable-name}#{$infix}),
+          $color,
+          contrast-color($color)
+      ));
+      background-color: rgba(conditional-color(
+          var(--#{$outline-css-variable-name}#{$infix}),
+          (r:255, g:255, b:255, a:0),
+          $color
+      ));
+      border-color: rgba($color);
+      font-size: calc(#{$font-size-base} * var(--#{$size-css-variable-name}#{$infix}));
+      padding: calc(#{$button-padding-y} * var(--#{$size-css-variable-name}#{$infix})) calc(#{$button-padding-x} * var(--#{$size-css-variable-name}#{$infix}));
+
+      &:not(:disabled):not(.disabled) {
+        &:hover, &:focus {
+          color: rgba(contrast-color(darken($color, .075)));
+          background-color: rgba(darken($color, .075));
+          border-color: rgba(darken($color, .1));
+        }
+
+        &:active, &.active {
+          color: rgba(contrast-color(darken($color, .1)));
+          background-color: rgba(darken($color, .1));
+          border-color: rgba(darken($color, .125));
+        }
+      }
+    }
+  }
+
+  > .prefix {
+    display: flex;
+    flex-direction: column;
+    margin-right: $button-prefix-gap;
+  }
+
+  > .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > .suffix {
+    display: flex;
+    flex-direction: column;
+    margin-left: $button-suffix-gap;
+  }
+}

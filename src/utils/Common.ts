@@ -16,3 +16,5 @@ export const mapValues = <V, TV>(obj: { [key in any]: V }, mapper: (value: V) =>
     return Object.entries(obj)
         .reduce((values, [key, value]: [string, V]) => ({...values, [key]: mapper(value)}), {});
 };
+
+export type Modify<T, R> = Pick<T, Exclude<keyof T, keyof R>> & R;

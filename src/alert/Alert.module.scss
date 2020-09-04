@@ -1,0 +1,51 @@
+@import "src/utils/Breakpoint";
+@import "src/utils/Size";
+@import "src/utils/ThemeColor";
+
+$alert-padding-y: .75rem;
+$alert-padding-x: 1rem;
+$alert-border-radius: .375rem;
+
+.alert {
+  position: relative;
+  padding: $alert-padding-y $alert-padding-x;
+  border: 1px solid transparent;
+  border-radius: $alert-border-radius;
+
+  // theme-color with css variables for each breakpoint
+  @include breakpoint-aware-css-color-variables($theme-color-css-variable-name);
+
+  // color, background-color, border-color according to the theme-color
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint);
+
+    @include breakpoint-up($breakpoint) {
+      $color: (r:var(--#{$theme-color-css-variable-name}-r#{$infix}), g:var(--#{$theme-color-css-variable-name}-g#{$infix}), b:var(--#{$theme-color-css-variable-name}-b#{$infix}), a:var(--#{$theme-color-css-variable-name}-a#{$infix}));
+      $text-color: contrast-color($color);
+
+      color: rgba($text-color);
+      background-color: rgba($color);
+      border-color: rgba($color);
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  > .prefix {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > .suffix {
+    display: flex;
+    flex-direction: column;
+  }
+}

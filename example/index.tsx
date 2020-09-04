@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'react-app-polyfill/ie11';
 import * as ReactDOM from 'react-dom';
-import {Grid, GridItem} from '../.';
+import {Alert, Button, Flex, Grid, GridItem, Size, ThemeColor} from '../.';
 import './index.css';
 
 const App = () => {
@@ -166,6 +166,109 @@ const App = () => {
                         <input type="number" placeholder="Enter your age."/>
                     </GridItem>
                 </Grid>
+            </GridItem>
+            <GridItem>
+                <Grid gap={'1rem'}>
+                    <GridItem>
+                        <Alert prefix={'★'} themeColor={{xs: ThemeColor.SECONDARY, lg: ThemeColor.PRIMARY}} alignItems={{xs: 'start', lg: 'center'}}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.SECONDARY} suffix={'★'}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.INFO}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.SUCCESS}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.WARNING}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.DANGER}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.LIGHT}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                    <GridItem>
+                        <Alert themeColor={ThemeColor.DARK}>
+                            <div>
+                                <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                dolore
+                                magna aliquyam erat, sed diam voluptua.
+                            </div>
+                        </Alert>
+                    </GridItem>
+                </Grid>
+            </GridItem>
+            <GridItem>
+                <Flex alignItems={'center'} gap={'.25rem'} wrap={true}>
+                    {Object.keys(Size).map((size: Size) => (
+                        <Button key={size} size={size}>
+                            {size.charAt(0) + size.substring(1).toLowerCase()} Button
+                        </Button>
+                    ))}
+                </Flex>
+            </GridItem>
+            <GridItem>
+                <Flex gap={'.25rem'} wrap={true}>
+                    {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
+                        <Button key={themeColor} themeColor={themeColor}>
+                            {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                        </Button>
+                    ))}
+                </Flex>
+            </GridItem>
+            <GridItem>
+                <Flex gap={'.25rem'} wrap={true}>
+                    {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
+                        <Button key={themeColor} themeColor={themeColor} outline={{xs: false, lg: true}}>
+                            {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                        </Button>
+                    ))}
+                </Flex>
             </GridItem>
         </Grid>
     );
