@@ -4,8 +4,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
@@ -41,10 +40,6 @@
     "moduleNameMapper": {
       "\\.(scss|css)$": "identity-obj-proxy"
     }
-  },
-  "np": {
-    "yarn": false,
-    "contents": "dist"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
