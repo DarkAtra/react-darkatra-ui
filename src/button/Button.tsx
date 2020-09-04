@@ -32,7 +32,7 @@ const Button = (props: ButtonProps) => {
 
     const _className = classes(
         styles.button,
-        disabled ? 'disabled' : null,
+        disabled ? styles.disabled : null,
         className
     );
 
@@ -58,16 +58,16 @@ const Button = (props: ButtonProps) => {
 
     return href ? (
         disabled ? (
-            <span className={_className} style={_style} {...rest}>
+            <span className={_className} style={_style} tabIndex={0} {...rest}>
                 {_children}
             </span>
         ) : (
-            <Link className={_className} style={_style} to={href} {...rest}>
+            <Link className={_className} style={_style} to={href} tabIndex={0} {...rest}>
                 {_children}
             </Link>
         )
     ) : (
-        <button className={_className} style={_style} disabled={disabled} {...rest}>
+        <button className={_className} style={_style} disabled={disabled} tabIndex={0} {...rest}>
             {_children}
         </button>
     );

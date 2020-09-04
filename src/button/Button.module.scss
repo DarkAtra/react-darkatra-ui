@@ -17,13 +17,19 @@ $outline-css-variable-name: outline;
   border-radius: $button-border-radius;
   gap: $button-prefix-suffix-gap;
   user-select: none;
+  appearance: none;
   text-align: center;
+  outline: none !important;
   text-decoration: none !important;
   line-height: $line-height-base;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
   &:not(:disabled):not(.disabled) {
     cursor: pointer;
+  }
+
+  &:disabled, &.disabled {
+    opacity: 60%;
   }
 
   // theme-color with css variables for each breakpoint
@@ -54,10 +60,14 @@ $outline-css-variable-name: outline;
       padding: calc(#{$button-padding-y} * var(--#{$size-css-variable-name}#{$infix})) calc(#{$button-padding-x} * var(--#{$size-css-variable-name}#{$infix}));
 
       &:not(:disabled):not(.disabled) {
-        &:hover, &:focus {
+        &:hover, &:focus, &:focus-within {
           color: rgba(contrast-color(darken($color, .075)));
           background-color: rgba(darken($color, .075));
           border-color: rgba(darken($color, .1));
+        }
+
+        &:focus, &:focus-within {
+          box-shadow: 0 0 0 .15rem rgba(mix($color, (r: 255, g: 255, b: 255, a: .5), 50));
         }
 
         &:active, &.active {
