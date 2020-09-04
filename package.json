@@ -43,6 +43,7 @@
     }
   },
   "np": {
+    "yarn": false,
     "contents": "dist"
   },
   "dependencies": {
