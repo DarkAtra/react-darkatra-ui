@@ -3,7 +3,7 @@
 This library provides you with a grid system that was created with responsiveness in mind.
 The CSS used for this grid system has a really small footprint and is even more flexible than some other grid systems out there.
 
-##Live demo
+## Live demo
 https://darkatra.github.io/react-darkatra-ui/index.html
 
 ## Latest Version
