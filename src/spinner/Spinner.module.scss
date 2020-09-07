@@ -1,0 +1,58 @@
+@import "src/utils/Breakpoint";
+@import "src/utils/Size";
+@import "src/utils/ThemeColor";
+
+$offset: 280;
+$duration: 1.4s;
+
+.spinner {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  animation: spinner $duration linear infinite;
+
+  // theme-color with css variables for each breakpoint
+  @include breakpoint-aware-css-color-variables($theme-color-css-variable-name);
+
+  > circle {
+    stroke-dasharray: $offset;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: dash $duration ease-in-out infinite;
+    transition: stroke .15s ease-in-out;
+
+    // stroke according to the theme-color
+    @each $breakpoint in map-keys($breakpoints) {
+      $infix: breakpoint-infix($breakpoint);
+
+      @include breakpoint-up($breakpoint) {
+        $color: (r:var(--#{$theme-color-css-variable-name}-r#{$infix}), g:var(--#{$theme-color-css-variable-name}-g#{$infix}), b:var(--#{$theme-color-css-variable-name}-b#{$infix}), a:var(--#{$theme-color-css-variable-name}-a#{$infix}));
+
+        stroke: rgba($color);
+      }
+    }
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(270deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: $offset;
+    }
+    50% {
+      stroke-dashoffset: $offset/4;
+      transform: rotate(135deg);
+    }
+    100% {
+      stroke-dashoffset: $offset;
+      transform: rotate(450deg);
+    }
+  }
+}

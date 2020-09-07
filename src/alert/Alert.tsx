@@ -1,16 +1,16 @@
 import React, {CSSProperties, HTMLAttributes, ReactNode} from 'react';
 import Flex, {FlexAlignItems} from '../flex/Flex';
 import {BreakpointAwareValue, getValuePerBreakpointAndFillGaps} from '../utils/Breakpoint';
-import {classes, Modify} from '../utils/Common';
+import {classes} from '../utils/Common';
 import {getThemeColorRgbaStyles, ThemeColor} from '../utils/ThemeColor';
 import styles from './Alert.module.scss';
 
-export type AlertProps = Modify<HTMLAttributes<HTMLDivElement>, {
+export type AlertProps = Omit<HTMLAttributes<HTMLDivElement>, 'prefix'> & {
     themeColor?: BreakpointAwareValue<ThemeColor>;
     alignItems?: BreakpointAwareValue<FlexAlignItems>
     prefix?: ReactNode;
     suffix?: ReactNode;
-}>;
+};
 
 const Alert = (props: AlertProps) => {
 

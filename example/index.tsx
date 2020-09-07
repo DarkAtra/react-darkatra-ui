@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'react-app-polyfill/ie11';
 import * as ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
-import {Alert, Button, Flex, Grid, GridItem, Size, ThemeColor} from '../.';
+import {Alert, Button, Flex, Grid, GridItem, Size, Spinner, ThemeColor} from '../.';
 import './index.css';
 
 const App = () => {
@@ -293,6 +293,13 @@ const App = () => {
                             <Button key={themeColor} themeColor={themeColor} outline={{xs: false, lg: true}}>
                                 {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
                             </Button>
+                        ))}
+                    </Flex>
+                </GridItem>
+                <GridItem>
+                    <Flex gap={'.25rem'} wrap={true}>
+                        {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
+                            <Spinner key={themeColor} themeColor={themeColor} style={{fontSize: '2rem'}}/>
                         ))}
                     </Flex>
                 </GridItem>

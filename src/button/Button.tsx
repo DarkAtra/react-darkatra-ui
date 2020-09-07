@@ -1,18 +1,18 @@
 import React, {AnchorHTMLAttributes, ButtonHTMLAttributes, CSSProperties, ReactNode} from 'react';
 import {Link} from 'react-router-dom';
 import {BreakpointAwareValue, getValuePerBreakpointAndFillGaps, withBreakpointSuffix} from '../utils/Breakpoint';
-import {classes, mapKeys, mapValues, Modify} from '../utils/Common';
+import {classes, mapKeys, mapValues} from '../utils/Common';
 import {getSizeMultiplier, Size} from '../utils/Size';
 import {getThemeColorRgbaStyles, ThemeColor} from '../utils/ThemeColor';
 import styles from './Button.module.scss';
 
-export type ButtonProps = Modify<ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement>, {
+export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'prefix'> & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'prefix'> & {
     themeColor?: BreakpointAwareValue<ThemeColor>;
     outline?: BreakpointAwareValue<boolean>;
     size?: BreakpointAwareValue<Size>;
     prefix?: ReactNode;
     suffix?: ReactNode;
-}>;
+};
 
 const Button = (props: ButtonProps) => {
 
