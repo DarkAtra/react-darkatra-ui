@@ -28,3 +28,6 @@ indent_style = space
 
 [{pageLayout, *.sht, *.htm, *.html, *.shtm, *.shtml, *.ng}]
 indent_style = space
+
+[{*.yaml, *.yml}]
+indent_size = 2
