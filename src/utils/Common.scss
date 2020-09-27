@@ -1,0 +1,3 @@
+@function conditional($condition, $true_value, $false_value) {
+  @return calc((#{$condition} * #{$true_value}) + ((1 - #{$condition}) * #{$false_value}));
+}

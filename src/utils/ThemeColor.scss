@@ -1,4 +1,5 @@
 @import "src/utils/Breakpoint";
+@import "src/utils/Common";
 
 $theme-color-css-variable-name: theme-color;
 
@@ -19,10 +20,10 @@ $contrast_color_dark: (r: 40, g: 62, b: 89, a: 1);
 
 @function conditional-color($condition, $true_color, $false_color) {
   @return (
-    r: calc((#{$condition} * #{map-get($true_color, r)}) + ((1 - #{$condition}) * #{map-get($false_color, r)})),
-    g: calc((#{$condition} * #{map-get($true_color, g)}) + ((1 - #{$condition}) * #{map-get($false_color, g)})),
-    b: calc((#{$condition} * #{map-get($true_color, b)}) + ((1 - #{$condition}) * #{map-get($false_color, b)})),
-    a: calc((#{$condition} * #{map-get($true_color, a)}) + ((1 - #{$condition}) * #{map-get($false_color, a)}))
+    r: conditional($condition, map-get($true_color, r), map-get($false_color, r)),
+    g: conditional($condition, map-get($true_color, g), map-get($false_color, g)),
+    b: conditional($condition, map-get($true_color, b), map-get($false_color, b)),
+    a: conditional($condition, map-get($true_color, a), map-get($false_color, a))
   );
 }
 

@@ -1,0 +1,74 @@
+@import "src/utils/Breakpoint";
+@import "src/utils/Common";
+@import "src/utils/Size";
+@import "src/utils/ThemeColor";
+
+$badge-padding-y: .35em;
+$badge-padding-x: .5rem;
+$badge-border-radius: .375rem;
+$badge-pill-border-radius: 1em;
+$pill-css-variable-name: pill;
+
+.badge {
+  position: relative;
+  padding: $badge-padding-y $badge-padding-x;
+  border: 1px solid transparent;
+  font-size: .75em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  outline: none !important;
+  text-decoration: none !important;
+
+  // theme-color with css variables for each breakpoint
+  @include breakpoint-aware-css-color-variables($theme-color-css-variable-name);
+  @include breakpoint-aware-css-variable($pill-css-variable-name, 0);
+
+  // color, background-color, border-color according to the theme-color
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint);
+
+    @include breakpoint-up($breakpoint) {
+      $color: (r:var(--#{$theme-color-css-variable-name}-r#{$infix}), g:var(--#{$theme-color-css-variable-name}-g#{$infix}), b:var(--#{$theme-color-css-variable-name}-b#{$infix}), a:var(--#{$theme-color-css-variable-name}-a#{$infix}));
+      $text-color: contrast-color($color);
+
+      color: rgba($text-color);
+      background-color: rgba($color);
+      border-color: rgba($color);
+      border-radius: conditional(var(--#{$pill-css-variable-name}#{$infix}), $badge-pill-border-radius, $badge-border-radius);
+
+      @at-root a {
+        &:hover, &:focus, &:focus-within {
+          color: rgba(contrast-color(darken($color, .075)));
+          background-color: rgba(darken($color, .075));
+          border-color: rgba(darken($color, .1));
+        }
+
+        &:focus, &:focus-within {
+          box-shadow: 0 0 0 .15rem rgba(mix($color, (r: 255, g: 255, b: 255, a: .5), 50));
+        }
+
+        &:active, &.active {
+          color: rgba(contrast-color(darken($color, .1)));
+          background-color: rgba(darken($color, .1));
+          border-color: rgba(darken($color, .125));
+        }
+      }
+    }
+  }
+
+  > .prefix {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > .suffix {
+    display: flex;
+    flex-direction: column;
+  }
+}

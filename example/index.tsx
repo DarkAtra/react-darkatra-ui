@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'react-app-polyfill/ie11';
 import * as ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
-import {Alert, Button, Flex, Grid, GridItem, Size, Spinner, ThemeColor} from '../.';
+import {Alert, Badge, Button, Flex, Grid, GridItem, Size, Spinner, ThemeColor} from '../.';
 import './index.css';
 
 const App = () => {
@@ -147,25 +147,25 @@ const App = () => {
                         </GridItem>
                     </Grid>
                     <h4>
-                        Same as the above but with only one column for everything below <code>md</code>.
+                        Same as the above but with items centered vertically and only one column for everything below <code>md</code>.
                     </h4>
                     <Grid columns={{xs: 1, md: 'auto minmax(0, 1fr)'}} gap={'1px'} style={gridStyles}>
-                        <GridItem style={gridItemStyles}>
+                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
                             First name:
                         </GridItem>
-                        <GridItem style={gridItemStyles}>
+                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
                             <input type="text" placeholder="Enter your first name."/>
                         </GridItem>
-                        <GridItem style={gridItemStyles}>
+                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
                             Last name:
                         </GridItem>
-                        <GridItem style={gridItemStyles}>
+                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
                             <input type="text" placeholder="Enter your last name."/>
                         </GridItem>
-                        <GridItem style={gridItemStyles}>
+                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
                             Age:
                         </GridItem>
-                        <GridItem style={gridItemStyles}>
+                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
                             <input type="number" placeholder="Enter your age."/>
                         </GridItem>
                     </Grid>
@@ -300,6 +300,24 @@ const App = () => {
                     <Flex gap={'.25rem'} wrap={true}>
                         {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
                             <Spinner key={themeColor} themeColor={themeColor} style={{fontSize: '2rem'}}/>
+                        ))}
+                    </Flex>
+                </GridItem>
+                <GridItem>
+                    <Flex gap={'.25rem'} wrap={true}>
+                        {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
+                            <Badge key={themeColor} themeColor={themeColor}>
+                                {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                            </Badge>
+                        ))}
+                    </Flex>
+                </GridItem>
+                <GridItem>
+                    <Flex gap={'.25rem'} wrap={true}>
+                        {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
+                            <Badge key={themeColor} themeColor={themeColor} href={'#'} prefix={'★'} pill={{xs: false, md: true}}>
+                                {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                            </Badge>
                         ))}
                     </Flex>
                 </GridItem>
