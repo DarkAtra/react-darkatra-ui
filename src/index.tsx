@@ -1,4 +1,5 @@
 import Alert from './alert/Alert';
+import Badge from './badge/Badge';
 import Button from './button/Button';
 import Flex from './flex/Flex';
 import Grid from './grid/Grid';
@@ -11,6 +12,7 @@ import {ThemeColor} from './utils/ThemeColor';
 
 export {
     Alert,
+    Badge,
     Button,
     Flex,
     Grid,

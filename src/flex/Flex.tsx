@@ -20,6 +20,7 @@ export type FlexProps = HTMLAttributes<HTMLDivElement> & {
     inline?: BreakpointAwareValue<boolean>;
     gap?: BreakpointAwareValue<string>;
     wrap?: BreakpointAwareValue<boolean>;
+    component?: React.ComponentType<any>;
 };
 
 const Flex = (props: FlexProps) => {
@@ -31,6 +32,7 @@ const Flex = (props: FlexProps) => {
         inline = false,
         gap = null,
         wrap = false,
+        component = (p) => <div {...p}>{p.children}</div>,
         className,
         style,
         ...rest
@@ -54,9 +56,15 @@ const Flex = (props: FlexProps) => {
     } as CSSProperties;
 
     return (
-        <div className={_className} style={_style} {...rest}>
-            {children}
-        </div>
+        React.createElement(
+            component,
+            {
+                className: _className,
+                style: _style,
+                ...rest
+            },
+            children
+        )
     );
 };
 
