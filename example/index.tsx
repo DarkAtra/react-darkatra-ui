@@ -276,6 +276,12 @@ const App = () => {
                         <Button href={'#'} disabled={true}>
                             Disabled Link
                         </Button>
+                        <Button suffix={<Badge themeColor={ThemeColor.LIGHT}>Badge</Badge>}>
+                            Button with
+                        </Button>
+                        <Button suffix={<Badge themeColor={ThemeColor.SUCCESS} soft={true}>Soft Badge</Badge>}>
+                            Button with
+                        </Button>
                     </Flex>
                 </GridItem>
                 <GridItem>
@@ -308,6 +314,15 @@ const App = () => {
                         {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
                             <Badge key={themeColor} themeColor={themeColor}>
                                 {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
+                            </Badge>
+                        ))}
+                    </Flex>
+                </GridItem>
+                <GridItem>
+                    <Flex gap={'.25rem'} wrap={true}>
+                        {Object.keys(ThemeColor).map((themeColor: ThemeColor) => (
+                            <Badge key={themeColor} themeColor={themeColor} soft={{xs: false, md: true}}>
+                                Soft {themeColor.charAt(0) + themeColor.substring(1).toLowerCase()}
                             </Badge>
                         ))}
                     </Flex>

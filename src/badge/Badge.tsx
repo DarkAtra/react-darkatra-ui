@@ -8,6 +8,7 @@ import styles from './Badge.module.scss';
 
 export type BadgeProps = Omit<HTMLAttributes<HTMLDivElement>, 'prefix'> & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'prefix'> & {
     themeColor?: BreakpointAwareValue<ThemeColor>;
+    soft?: BreakpointAwareValue<boolean>;
     pill?: BreakpointAwareValue<boolean>;
     prefix?: ReactNode;
     suffix?: ReactNode;
@@ -18,6 +19,7 @@ const Badge = (props: BadgeProps) => {
     const {
         children,
         themeColor = ThemeColor.PRIMARY,
+        soft = false,
         pill = false,
         prefix,
         suffix,
@@ -36,8 +38,10 @@ const Badge = (props: BadgeProps) => {
     const _style = {
         ...style,
         ...getThemeColorRgbaStyles(breakpointValues),
+        ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(soft, false), v => v ? 1 : 0),
+            key => withBreakpointSuffix('--badge-soft', key)),
         ...mapKeys(mapValues(getValuePerBreakpointAndFillGaps(pill, false), v => v ? 1 : 0),
-            key => withBreakpointSuffix('--pill', key))
+            key => withBreakpointSuffix('--badge-pill', key))
     } as CSSProperties;
 
     const _children = <>
