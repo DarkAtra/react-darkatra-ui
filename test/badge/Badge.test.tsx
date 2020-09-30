@@ -1,7 +1,6 @@
 import {render} from '@testing-library/react';
 import React from 'react';
 import {Badge} from '../../src';
-import {getThemeColorRgba, ThemeColor} from '../../src/utils/ThemeColor';
 
 describe('badge component test', () => {
 
