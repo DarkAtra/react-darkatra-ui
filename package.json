@@ -42,7 +42,7 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "<rootDir>/test/testSetup.ts"
+      "<rootDir>/test/test-setup.ts"
     ],
     "moduleNameMapper": {
       "\\.(scss|css)$": "identity-obj-proxy"
