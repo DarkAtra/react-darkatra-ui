@@ -1,3 +1,5 @@
+![CI](https://github.com/DarkAtra/react-darkatra-ui/workflows/CI/badge.svg) ![CodeQL](https://github.com/DarkAtra/react-darkatra-ui/workflows/CodeQL/badge.svg)
+
 # About `react-darkatra-ui`
 
 This library provides you with a grid system that was created with responsiveness in mind.
