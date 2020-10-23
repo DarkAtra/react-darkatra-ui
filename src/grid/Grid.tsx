@@ -1,10 +1,11 @@
-import React, {Children, cloneElement, CSSProperties, HTMLAttributes, ReactElement} from 'react';
+import React, {Children, cloneElement, CSSProperties, FunctionComponentElement, HTMLAttributes} from 'react';
 import {BreakpointAwareValue, getValuePerBreakpointAndFillGaps, withBreakpointSuffix} from '../utils/Breakpoint';
 import {classes, isFixed, mapKeys, mapValues} from '../utils/Common';
 import {GridHorizontalAlignContent, GridItemProps, GridVerticalAlignContent} from './grid-item/GridItem';
 import styles from './Grid.module.scss';
 
 export type GridProps = HTMLAttributes<HTMLDivElement> & {
+    children: FunctionComponentElement<GridItemProps> | Array<FunctionComponentElement<GridItemProps>>;
     inline?: BreakpointAwareValue<boolean>;
     dense?: BreakpointAwareValue<boolean>;
     gap?: BreakpointAwareValue<string>;
@@ -46,8 +47,7 @@ const Grid = (props: GridProps) => {
 
     return (
         <div className={_className} style={_style} {...rest}>
-            {/* @ts-ignore: looking for a typesafe way to do this, help wanted */}
-            {Children.map(children, (child: ReactElement<GridItemProps>) => {
+            {Children.map(children, (child: FunctionComponentElement<GridItemProps>) => {
                 return cloneElement(child, {
                     hAlignContent: hAlignContent,
                     vAlignContent: vAlignContent,
