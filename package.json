@@ -23,7 +23,7 @@
   "author": "DarkAtra",
   "module": "dist/react-darkatra-ui.esm.js",
   "devDependencies": {
-    "@testing-library/jest-dom": "5.11.4",
+    "@testing-library/jest-dom": "5.11.5",
     "@testing-library/react": "11.1.0",
     "@types/jest": "26.0.15",
     "@types/react": "16.9.53",
