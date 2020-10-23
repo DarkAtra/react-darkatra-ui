@@ -1,4 +1,4 @@
-import React, {CSSProperties, HTMLAttributes} from 'react';
+import React, {CSSProperties, HTMLAttributes, ReactElement} from 'react';
 import {BreakpointAwareValue, getValuePerBreakpointAndFillGaps, withBreakpointSuffix} from '../../utils/Breakpoint';
 import {classes, mapKeys, mapValues} from '../../utils/Common';
 import styles from '../Grid.module.scss';
@@ -30,7 +30,7 @@ export type GridItemProps = HTMLAttributes<HTMLDivElement> & {
     vAlignContent?: BreakpointAwareValue<GridVerticalAlignContent>;
 };
 
-const GridItem = (props: GridItemProps) => {
+const GridItem: (props: GridItemProps) => ReactElement<GridItemProps> = (props) => {
 
     const {
         children,

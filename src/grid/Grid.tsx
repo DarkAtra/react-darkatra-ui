@@ -5,7 +5,6 @@ import {GridHorizontalAlignContent, GridItemProps, GridVerticalAlignContent} fro
 import styles from './Grid.module.scss';
 
 export type GridProps = HTMLAttributes<HTMLDivElement> & {
-    children: ReactElement<GridItemProps> | Array<ReactElement<GridItemProps>>;
     inline?: BreakpointAwareValue<boolean>;
     dense?: BreakpointAwareValue<boolean>;
     gap?: BreakpointAwareValue<string>;
@@ -47,6 +46,7 @@ const Grid = (props: GridProps) => {
 
     return (
         <div className={_className} style={_style} {...rest}>
+            {/* @ts-ignore: looking for a typesafe way to do this, help wanted */}
             {Children.map(children, (child: ReactElement<GridItemProps>) => {
                 return cloneElement(child, {
                     hAlignContent: hAlignContent,

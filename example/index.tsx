@@ -188,54 +188,18 @@ const App = () => {
                                 </div>
                             </Alert>
                         </GridItem>
-                        <GridItem>
-                            <Alert themeColor={ThemeColor.INFO}>
-                                <div>
-                                    <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et dolore magna aliquyam erat, sed diam voluptua.
-                                </div>
-                            </Alert>
-                        </GridItem>
-                        <GridItem>
-                            <Alert themeColor={ThemeColor.SUCCESS}>
-                                <div>
-                                    <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et dolore magna aliquyam erat, sed diam voluptua.
-                                </div>
-                            </Alert>
-                        </GridItem>
-                        <GridItem>
-                            <Alert themeColor={ThemeColor.WARNING}>
-                                <div>
-                                    <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et dolore magna aliquyam erat, sed diam voluptua.
-                                </div>
-                            </Alert>
-                        </GridItem>
-                        <GridItem>
-                            <Alert themeColor={ThemeColor.DANGER}>
-                                <div>
-                                    <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et dolore magna aliquyam erat, sed diam voluptua.
-                                </div>
-                            </Alert>
-                        </GridItem>
-                        <GridItem>
-                            <Alert themeColor={ThemeColor.LIGHT}>
-                                <div>
-                                    <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et dolore magna aliquyam erat, sed diam voluptua.
-                                </div>
-                            </Alert>
-                        </GridItem>
-                        <GridItem>
-                            <Alert themeColor={ThemeColor.DARK}>
-                                <div>
-                                    <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et dolore magna aliquyam erat, sed diam voluptua.
-                                </div>
-                            </Alert>
-                        </GridItem>
+                        {Object.keys(ThemeColor)
+                            .filter(themeColor => themeColor !== ThemeColor.PRIMARY && themeColor !== ThemeColor.SECONDARY)
+                            .map((themeColor: ThemeColor) => (
+                                <GridItem key={themeColor}>
+                                    <Alert themeColor={themeColor}>
+                                        <div>
+                                            <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                                            labore et dolore magna aliquyam erat, sed diam voluptua.
+                                        </div>
+                                    </Alert>
+                                </GridItem>
+                            ))}
                     </Grid>
                 </GridItem>
                 <GridItem>
