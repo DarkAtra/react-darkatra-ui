@@ -149,23 +149,23 @@ const App = () => {
                     <h4>
                         Same as the above but with items centered vertically and only one column for everything below <code>md</code>.
                     </h4>
-                    <Grid columns={{xs: 1, md: 'auto minmax(0, 1fr)'}} gap={'1px'} style={gridStyles}>
-                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
+                    <Grid columns={{xs: 1, md: 'auto minmax(0, 1fr)'}} gap={'1px'} vAlignContent={'center'} style={gridStyles}>
+                        <GridItem style={gridItemStyles}>
                             First name:
                         </GridItem>
-                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
+                        <GridItem style={gridItemStyles}>
                             <input type="text" placeholder="Enter your first name."/>
                         </GridItem>
-                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
+                        <GridItem style={gridItemStyles}>
                             Last name:
                         </GridItem>
-                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
+                        <GridItem style={gridItemStyles}>
                             <input type="text" placeholder="Enter your last name."/>
                         </GridItem>
-                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
+                        <GridItem style={gridItemStyles}>
                             Age:
                         </GridItem>
-                        <GridItem style={gridItemStyles} vAlignContent={'center'}>
+                        <GridItem style={gridItemStyles}>
                             <input type="number" placeholder="Enter your age."/>
                         </GridItem>
                     </Grid>
@@ -176,9 +176,7 @@ const App = () => {
                             <Alert prefix={'★'} themeColor={{xs: ThemeColor.SECONDARY, lg: ThemeColor.PRIMARY}} alignItems={{xs: 'start', lg: 'center'}}>
                                 <div>
                                     <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et
-                                    dolore
-                                    magna aliquyam erat, sed diam voluptua.
+                                    et dolore magna aliquyam erat, sed diam voluptua.
                                 </div>
                             </Alert>
                         </GridItem>
@@ -186,9 +184,7 @@ const App = () => {
                             <Alert themeColor={ThemeColor.SECONDARY} suffix={'★'}>
                                 <div>
                                     <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et
-                                    dolore
-                                    magna aliquyam erat, sed diam voluptua.
+                                    et dolore magna aliquyam erat, sed diam voluptua.
                                 </div>
                             </Alert>
                         </GridItem>
@@ -196,9 +192,7 @@ const App = () => {
                             <Alert themeColor={ThemeColor.INFO}>
                                 <div>
                                     <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et
-                                    dolore
-                                    magna aliquyam erat, sed diam voluptua.
+                                    et dolore magna aliquyam erat, sed diam voluptua.
                                 </div>
                             </Alert>
                         </GridItem>
@@ -206,9 +200,7 @@ const App = () => {
                             <Alert themeColor={ThemeColor.SUCCESS}>
                                 <div>
                                     <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et
-                                    dolore
-                                    magna aliquyam erat, sed diam voluptua.
+                                    et dolore magna aliquyam erat, sed diam voluptua.
                                 </div>
                             </Alert>
                         </GridItem>
@@ -216,9 +208,7 @@ const App = () => {
                             <Alert themeColor={ThemeColor.WARNING}>
                                 <div>
                                     <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et
-                                    dolore
-                                    magna aliquyam erat, sed diam voluptua.
+                                    et dolore magna aliquyam erat, sed diam voluptua.
                                 </div>
                             </Alert>
                         </GridItem>
@@ -226,9 +216,7 @@ const App = () => {
                             <Alert themeColor={ThemeColor.DANGER}>
                                 <div>
                                     <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et
-                                    dolore
-                                    magna aliquyam erat, sed diam voluptua.
+                                    et dolore magna aliquyam erat, sed diam voluptua.
                                 </div>
                             </Alert>
                         </GridItem>
@@ -236,9 +224,7 @@ const App = () => {
                             <Alert themeColor={ThemeColor.LIGHT}>
                                 <div>
                                     <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et
-                                    dolore
-                                    magna aliquyam erat, sed diam voluptua.
+                                    et dolore magna aliquyam erat, sed diam voluptua.
                                 </div>
                             </Alert>
                         </GridItem>
@@ -246,9 +232,7 @@ const App = () => {
                             <Alert themeColor={ThemeColor.DARK}>
                                 <div>
                                     <a href={''}>Lorem ipsum dolor sit amet</a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-                                    et
-                                    dolore
-                                    magna aliquyam erat, sed diam voluptua.
+                                    et dolore magna aliquyam erat, sed diam voluptua.
                                 </div>
                             </Alert>
                         </GridItem>

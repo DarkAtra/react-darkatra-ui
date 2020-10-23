@@ -22,7 +22,7 @@ const verticalAlignContentToCssValueMap: { [key in GridVerticalAlignContent]: st
 export type GridHorizontalAlignContent = 'normal' | 'left' | 'center' | 'right' | 'stretch';
 export type GridVerticalAlignContent = 'normal' | 'top' | 'center' | 'bottom' | 'space-between' | 'space-around';
 
-export type GridProps = HTMLAttributes<HTMLDivElement> & {
+export type GridItemProps = HTMLAttributes<HTMLDivElement> & {
     spanColumns?: BreakpointAwareValue<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>;
     spanRows?: BreakpointAwareValue<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>;
     order?: BreakpointAwareValue<number>;
@@ -30,7 +30,7 @@ export type GridProps = HTMLAttributes<HTMLDivElement> & {
     vAlignContent?: BreakpointAwareValue<GridVerticalAlignContent>;
 };
 
-const GridItem = (props: GridProps) => {
+const GridItem = (props: GridItemProps) => {
 
     const {
         children,
