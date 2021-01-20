@@ -1,4 +1,4 @@
-[![npm Package](https://github.com/DarkAtra/react-darkatra-ui/workflows/Publish/badge.svg)](https://github.com/DarkAtra/react-darkatra-ui/releases)
+[![Publish](https://github.com/DarkAtra/react-darkatra-ui/workflows/Publish/badge.svg)](https://github.com/DarkAtra/react-darkatra-ui/releases)
 
 # About `react-darkatra-ui`
 
