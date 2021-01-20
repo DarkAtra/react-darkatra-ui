@@ -1,4 +1,4 @@
-![CI](https://github.com/DarkAtra/react-darkatra-ui/workflows/CI/badge.svg) ![CodeQL](https://github.com/DarkAtra/react-darkatra-ui/workflows/CodeQL/badge.svg)
+[![npm Package](https://github.com/DarkAtra/react-darkatra-ui/workflows/Publish/badge.svg)](https://github.com/DarkAtra/react-darkatra-ui/releases)
 
 # About `react-darkatra-ui`
 
