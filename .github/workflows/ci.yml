@@ -1,17 +1,20 @@
 name: CI
+
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 10.x, 12.x ]
+        node-version: [ 10, 12, 14 ]
     steps:
-      - name: Begin CI...
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Use Node ${{ matrix.node-version }}
@@ -19,7 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Use cached node_modules
+      - name: Setup node_modules Cache
         uses: actions/cache@v2
         with:
           path: node_modules
@@ -27,7 +30,7 @@ jobs:
           restore-keys: |
             nodeModules-
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: yarn install --frozen-lockfile
         env:
           CI: true
@@ -41,3 +44,66 @@ jobs:
         run: yarn build --if-present
         env:
           CI: true
+
+      - name: Install Dependencies for Example Project
+        if: matrix.node-version == 14
+        run: yarn --cwd example install --frozen-lockfile
+        env:
+          CI: true
+
+      - name: Build Example Project
+        if: matrix.node-version == 14
+        run: yarn --cwd example build
+        env:
+          CI: true
+
+      - name: Upload Documentation Artifact
+        if: matrix.node-version == 14
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation
+          path: example/dist
+
+  increment-project-version:
+    needs: build
+    name: Increment Project Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node Environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Update Project Version
+        run: npm version minor
+
+      - name: Push Changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git push
+
+  update-github-pages:
+    needs: build
+    name: Update Github Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download Documentation Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: documentation
+          path: docs
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Update Documentation"
+          git push
