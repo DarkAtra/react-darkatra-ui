@@ -35,6 +35,12 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
 
+      - name: Update Project Version
+        run: npm version ${{ github.event.release.tag_name }}
+
+      - name: Push Changes
+        run: git push
+
       - run: yarn install --frozen-lockfile
         env:
           CI: true
