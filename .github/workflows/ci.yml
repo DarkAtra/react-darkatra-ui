@@ -96,6 +96,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Configure Git
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git pull
+
       - name: Download Documentation Artifact
         uses: actions/download-artifact@v2
         with:
@@ -104,8 +110,6 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
           git add .
           git commit -m "Update Documentation"
           git push
