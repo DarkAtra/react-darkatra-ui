@@ -102,6 +102,9 @@ jobs:
           git config user.email github-actions@github.com
           git pull
 
+      - name: Delete existing Documentation
+        run: find docs ! -name '_config.yml' -type f -exec rm -f {} +
+
       - name: Download Documentation Artifact
         uses: actions/download-artifact@v2
         with:
