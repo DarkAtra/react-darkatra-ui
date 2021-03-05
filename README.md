@@ -1,4 +1,5 @@
 [![Publish](https://github.com/DarkAtra/react-darkatra-ui/workflows/Publish/badge.svg)](https://github.com/DarkAtra/react-darkatra-ui/releases)
+[![CI](https://github.com/DarkAtra/react-darkatra-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/DarkAtra/react-darkatra-ui/actions/workflows/ci.yml)
 
 # About `react-darkatra-ui`
 
