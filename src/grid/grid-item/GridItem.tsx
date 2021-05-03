@@ -21,6 +21,7 @@ const verticalAlignContentToCssValueMap: { [key in GridVerticalAlignContent]: st
 
 export type GridHorizontalAlignContent = 'normal' | 'left' | 'center' | 'right' | 'stretch';
 export type GridVerticalAlignContent = 'normal' | 'top' | 'center' | 'bottom' | 'space-between' | 'space-around';
+export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
 export type GridItemProps = HTMLAttributes<HTMLDivElement> & {
     spanColumns?: BreakpointAwareValue<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>;
@@ -28,6 +29,7 @@ export type GridItemProps = HTMLAttributes<HTMLDivElement> & {
     order?: BreakpointAwareValue<number>;
     hAlignContent?: BreakpointAwareValue<GridHorizontalAlignContent>;
     vAlignContent?: BreakpointAwareValue<GridVerticalAlignContent>;
+    direction?: BreakpointAwareValue<GridDirection>;
 };
 
 const GridItem: (props: GridItemProps) => ReactElement<GridItemProps> = (props) => {
@@ -39,6 +41,7 @@ const GridItem: (props: GridItemProps) => ReactElement<GridItemProps> = (props) 
         order = 0,
         hAlignContent = 'normal',
         vAlignContent = 'normal',
+        direction = 'column',
         className,
         style,
         ...rest
@@ -57,7 +60,8 @@ const GridItem: (props: GridItemProps) => ReactElement<GridItemProps> = (props) 
         ...mapKeys(mapValues<GridHorizontalAlignContent, string>(getValuePerBreakpointAndFillGaps<GridHorizontalAlignContent>(hAlignContent, 'normal'),
             v => horizontalAlignContentToCssValueMap[v]), key => withBreakpointSuffix('--grid-horizontal-alignment', key)),
         ...mapKeys(mapValues<GridVerticalAlignContent, string>(getValuePerBreakpointAndFillGaps<GridVerticalAlignContent>(vAlignContent, 'normal'),
-            v => verticalAlignContentToCssValueMap[v]), key => withBreakpointSuffix('--grid-vertical-alignment', key))
+            v => verticalAlignContentToCssValueMap[v]), key => withBreakpointSuffix('--grid-vertical-alignment', key)),
+        ...mapKeys(getValuePerBreakpointAndFillGaps(direction, 'column'), key => withBreakpointSuffix('--grid-direction', key))
     } as CSSProperties;
 
     return (

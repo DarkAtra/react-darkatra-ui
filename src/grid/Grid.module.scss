@@ -11,6 +11,7 @@ $grid-row-css-variable-name: grid-row;
 $grid-order-css-variable-name: grid-order;
 $grid-horizontal-alignment-css-variable-name: grid-horizontal-alignment;
 $grid-vertical-alignment-css-variable-name: grid-vertical-alignment;
+$grid-direction-css-variable-name: grid-direction;
 
 .grid {
   display: grid;
@@ -38,7 +39,6 @@ $grid-vertical-alignment-css-variable-name: grid-vertical-alignment;
   // direct children are always grid items as specified by the specs
   > .grid-item {
     display: flex;
-    flex-direction: column;
     width: auto;
     max-width: 100%;
     margin: 0;
@@ -49,6 +49,7 @@ $grid-vertical-alignment-css-variable-name: grid-vertical-alignment;
     @include breakpoint-aware-css-variable($grid-order-css-variable-name, 0);
     @include breakpoint-aware-css-variable($grid-horizontal-alignment-css-variable-name, normal);
     @include breakpoint-aware-css-variable($grid-vertical-alignment-css-variable-name, normal);
+    @include breakpoint-aware-css-variable($grid-direction-css-variable-name, column);
 
     @each $breakpoint in map-keys($breakpoints) {
       $infix: breakpoint-infix($breakpoint);
@@ -59,6 +60,7 @@ $grid-vertical-alignment-css-variable-name: grid-vertical-alignment;
         order: var(--#{$grid-order-css-variable-name}#{$infix});
         align-items: var(--#{$grid-horizontal-alignment-css-variable-name}#{$infix});
         justify-content: var(--#{$grid-vertical-alignment-css-variable-name}#{$infix});
+        flex-direction: var(--#{$grid-direction-css-variable-name}#{$infix});
       }
     }
   }

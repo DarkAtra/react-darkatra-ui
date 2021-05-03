@@ -123,6 +123,27 @@ const App = () => {
                 </GridItem>
                 <GridItem>
                     <h4>
+                        A simple two column grid with the default direction <code>column</code> and <code>hAlignContent={'center'}</code> for the grid items and
+                        a gap of <code>1rem</code>.
+                    </h4>
+                    <Grid columns={2} gap={'1rem'} style={gridStyles}>
+                        <GridItem style={gridItemStyles} hAlignContent={'center'}>
+                            <div style={gridItemContentStyles}>Some text</div>
+                            <div style={{...gridItemContentStyles, backgroundColor: '#9d72e5'}}>some more text</div>
+                        </GridItem>
+                    </Grid>
+                    <h4>
+                        Same as the above but with the grid-item direction set to <code>row</code>.
+                    </h4>
+                    <Grid columns={2} gap={'1rem'} style={gridStyles}>
+                        <GridItem style={gridItemStyles} direction={'row'} hAlignContent={'center'}>
+                            <div style={gridItemContentStyles}>Some text</div>
+                            <div style={{...gridItemContentStyles, backgroundColor: '#9d72e5'}}>some more text</div>
+                        </GridItem>
+                    </Grid>
+                </GridItem>
+                <GridItem>
+                    <h4>
                         First column shrinks to fit it's content, second column takes the remaining space.
                         Also adds a gap of <code>1px</code> between grid items to make it easier to see the size of each item.
                     </h4>
