@@ -44,7 +44,7 @@ jobs:
         run: npm version ${{ github.event.release.tag_name }}
 
       - name: Push Changes
-        run: git push origin HEAD:master
+        run: git push origin HEAD:main
 
       - run: yarn install --frozen-lockfile
         env:
